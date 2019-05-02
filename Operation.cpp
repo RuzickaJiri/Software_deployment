@@ -2,7 +2,7 @@
 #include "Operation.h"
 
 Operation::Operation(){
-  r = std::rand() %3;
+  int r = std::rand() %3;
   switch(r) {
     case 0 :
       operation_ = "AND";
