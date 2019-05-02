@@ -1,7 +1,7 @@
 CXXFLAGS=-Wall -Wextra -O0 -g -std=c++11
 
-main: main.o Generation.o Tree.o Node.o
-	g++ main.o Generation.o Tree.o Node.o -o main
+main: main.o Generation.o Tree.o Node.o Operator.o Leaf.o Operation.o
+	g++ main.o Generation.o Tree.o Node.o Operator.o Leaf.o Operation.o -o main
 
 main.o: main.cpp Generation.h Tree.h Node.h Operator.h Leaf.h Operation.h
 	g++ -o main.o -c ${CXXFLAGS} main.cpp
