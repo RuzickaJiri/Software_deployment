@@ -10,7 +10,7 @@ Operator::Operator(){
   next_ = nullptr ; //initialization of the next node on the null pointer
   previous_ = nullptr ; //initialization of the previous node on the null pointer
 
-  Operation* oper_ =  new Operation() ;
+  oper_ =  new Operation() ;
   second_next_ = nullptr ; //initialization of the next node on the null pointer
 } 
 
