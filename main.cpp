@@ -10,15 +10,13 @@ int main() {
   std::cout<<"Hello, World"<<std::endl;
 
   Operation o ;
-  //Operator op ;
+  Operator op ;
   Leaf l ;
 
   Tree t ;
 
 
 
-
-  //delete op ;
 
   return 0 ;
 }

@@ -26,3 +26,5 @@ Operation.o: Operation.cpp Operation.h
 
 clean: 
 	rm main main.o Generation.o Tree.o Node.o Operator.o Leaf.o Operation.o
+leak:
+	valgrind --leak-check=full ./main

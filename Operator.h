@@ -12,6 +12,8 @@ public:
   //Setters
 
   //Getters
+  Operation* oper() const ; 
+  Node* second_next() const ;
 
   //Methods
   std::string WhatAmI() const override ;
