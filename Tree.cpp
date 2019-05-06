@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include<iostream>
 #include<vector>
+#include"Operator.h"
 
 Tree::Tree(){
    fitness_ = 0;
@@ -21,18 +22,35 @@ Tree::~Tree(){
 }
 
 Tree Tree::Mutation() {
+  Operator* op = new Operator() ;
+  Leaf* leaf = new Leaf() ;
+  Node* new_node;
   int position = std::rand()%Nodes_.size() ;
   Node* random_node = Nodes_.at(position) ;
-    int r = std::rand() %3;
+  int r = std::rand() %2;
   switch(r) {
     case 0 :
-      this->replace(random_node) ;
+    {
+        new_node = op ;
+        
+        break;
+        
+    }
+    case 1 :
+    {
+      new_node=leaf;
+      
+      break;
+    }
+  }
+
+  r = std::rand() %2;
+  switch(r) {
+    case 0 :
+      this->replace(new_node, position) ;
       break;
     case 1 :
-      this->append(random_node,position);
-      break;
-    case 2 :
-      this->Delete(random_node) ;
+      this->append(new_node, position);
       break;
   }
   return *this ;
@@ -48,8 +66,13 @@ void Tree::append(Node* new_node, int position){
   head->set_previous(new_node) ;
 }
 
-void Tree::replace(Node* new_node){
-}
+
 
 void Tree::Delete(Node* new_node){
+}
+
+
+void Tree::replace(Node* new_node, int position){
+      
+       
 }

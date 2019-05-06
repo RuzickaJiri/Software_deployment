@@ -10,7 +10,7 @@ class Operator:public Node{
 public:   
 
   //Setters
-
+  void set_second_next(Node* newval);
   //Getters
   Operation* oper() const ; 
   Node* second_next() const ;

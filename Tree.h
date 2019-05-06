@@ -16,7 +16,7 @@ class Tree{
 
     Tree  Mutation();
     void Delete(Node* new_node);
-    void replace(Node* new_node);
+    void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
     
     float fitness();
