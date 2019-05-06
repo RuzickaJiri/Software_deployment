@@ -12,7 +12,10 @@ class Tree{
     //Destructor
     ~Tree()=default;
     //Methods
+
     Tree Mutation();
+
+    void append(Node* new_node);
     
     float fitness();
     float Nodes();

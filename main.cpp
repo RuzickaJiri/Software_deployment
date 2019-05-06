@@ -4,7 +4,7 @@
 #include "Operator.h"
 #include "Leaf.h"
 #include"Tree.h"
-
+#include"Generation.h"
 int main() {
 
   std::cout<<"Hello, World"<<std::endl;
@@ -12,6 +12,7 @@ int main() {
   Operation o ;
   Operator op ;
   Leaf l ;
+  Generation* g = new Generation(4);
 
   Tree t ;
 
