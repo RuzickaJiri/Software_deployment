@@ -13,6 +13,7 @@ class Tree{
     ~Tree()=default;
     //Methods
     void Mutation();
+    void append(Node* new_node);
     
     float fitness();
     float Nodes();

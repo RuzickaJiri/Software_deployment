@@ -14,3 +14,12 @@ Node* Node::next(){
 Node* Node::previous(){
   return previous_;
 }
+
+void Node::set_next(Node* newval){
+  next_ = newval; 
+}
+
+
+void Node::set_previous(Node* newval){
+  previous_ = newval; 
+}

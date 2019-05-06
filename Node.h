@@ -8,7 +8,8 @@ class Node{
 public:   
 
   //Setters
-
+    void set_next(Node* newval);
+    void set_previous(Node* newval);
   //Getters
     Node* next();
     Node* previous();
