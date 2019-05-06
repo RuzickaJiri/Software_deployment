@@ -29,3 +29,7 @@ Operation* Operator::oper() const {
 Node* Operator::second_next() const {
   return second_next_ ;
 }
+
+void Node::set_second_next(Node* newval){
+  second_next_ = newval; 
+}
