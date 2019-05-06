@@ -11,16 +11,14 @@ public:
 
   //Setters
 
-  void set_second_next(Node* n) ;
-
-  void set_second_next(Node* newval);
+  void set_second_next(Node* newval) override;
 
   //Getters
-  Operation* oper() const ; 
-  Node* second_next() const ;
+  Operation* oper() const override; 
+  Node* second_next() const override;
 
   //Methods
-  std::string WhatAmI() const override ;
+  std::string WhatAmI() const  override;
     
   //Constructors
   Operator() ;

@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Operation.h"
 #include <iostream>
 
 Node::Node(){
@@ -22,4 +23,15 @@ void Node::set_next(Node* newval){
 
 void Node::set_previous(Node* newval){
   previous_ = newval; 
+}
+
+Operation* Node::oper() const {
+  return 0 ;
+}
+
+Node* Node::second_next() const {
+  return 0 ;
+}
+
+void Node::set_second_next(Node* newval){
 }

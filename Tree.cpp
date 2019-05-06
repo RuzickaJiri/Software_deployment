@@ -1,6 +1,5 @@
 #include"Tree.h"
 #include"Node.h"
-#include"Operator.h"
 #include"Leaf.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,14 +32,11 @@ Tree Tree::Mutation() {
     case 0 :
     {
         new_node = op ;
-        
-        break;
-        
+        break;  
     }
     case 1 :
     {
       new_node=leaf;
-      
       break;
     }
   }
@@ -58,6 +54,8 @@ Tree Tree::Mutation() {
 }
 
 void Tree::append(Node* new_node, int position){
+
+   
   Node* head = Nodes_.at(position);
   Nodes_.at(position)=new_node;
   head->previous()->set_next(new_node);
@@ -68,24 +66,22 @@ void Tree::append(Node* new_node, int position){
 }
 
 
-
-
 void Tree::replace(Node* new_node, int position) {
   
-  node_to_replace = Nodes_.at(position) ;
-  new_node->set_previous(node_to_replace->previous_) ;
-  if (to_replace_node == node_to_replace->previous_->next_) {
-    node_to_replace->previous_->set_next(new_node) ;
+  Node* node_to_replace = Nodes_.at(position) ;
+  new_node->set_previous(node_to_replace->previous()) ;
+  if (node_to_replace == node_to_replace->previous()->next()) {
+    node_to_replace->previous()->set_next(new_node) ;
   } else {
-    node_to_replace->previous_->set_second_next(new_node) ;
+    node_to_replace->previous()->set_second_next(new_node) ;
   }  
   
   if (new_node->WhatAmI() == "Operator") {
-    if (to_replace_node->WhatAmI() == "Operator") {
-      new_node->set_next(to_replace_node->next_) ;
-      if (new_node->binary() == true) {
-        if (to_replace_node->binary() == true) {
-          new_node->set_second_next(to_replace_node->second_next_) ;
+    if (node_to_replace->WhatAmI() == "Operator") {
+      new_node->set_next(node_to_replace->next()) ;
+      if (new_node->oper()->binary() == true) {
+        if (node_to_replace->oper()->binary() == true) {
+          new_node->set_second_next(node_to_replace->second_next()) ;
         } else {
           Leaf* new_second_leaf = new Leaf() ;
           new_node->set_second_next(new_second_leaf) ;

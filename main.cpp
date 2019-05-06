@@ -15,7 +15,8 @@ int main() {
   Generation* g = new Generation(4);
 
   Tree t ;
-
+  t.append(&op,1) ;
+  //t.Mutation() ;
 
 
 

@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Operation.h"
 #include <string>
 
 #ifndef LEAF_

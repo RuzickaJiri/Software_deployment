@@ -1,4 +1,5 @@
 #include <string>
+#include "Operation.h"
 
 #ifndef NODE_
 #define NODE_
@@ -14,12 +15,18 @@ public:
     Node* next();
     Node* previous();
 
+
   //Methods
     virtual std::string WhatAmI() const = 0;
+  	virtual void set_second_next(Node* newval) ;
+  	virtual Operation* oper() const ; 
+  	virtual Node* second_next() const ;
     
   //Constructors
     Node(const Node& model) ; // copy constructor - deleted
     Node() ; // constructor of node
+
+    ~Node() = default ;	
     
 protected:
 
