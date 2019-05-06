@@ -4,18 +4,20 @@
 #include<string>
 #include"Node.h"
 #include<vector>
+#include"Leaf.h"
 class Tree{
   public : 
 
     //Constructors
     Tree();
     //Destructor
-    ~Tree()=default;
+    ~Tree();
     //Methods
 
-    Tree Mutation();
-
-    void append(Node* new_node);
+    Tree  Mutation();
+    void Delete(Node* new_node);
+    void replace(Node* new_node);
+    void append(Node* new_node, int position);
     
     float fitness();
     float Nodes();
@@ -25,7 +27,7 @@ class Tree{
     
     std::vector<Node*> Nodes_;
     float fitness_;
-  
+    Leaf* head_;
 };
 
 
