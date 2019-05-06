@@ -11,6 +11,7 @@ public:
   //Setters
 
   //Getters
+  int value() const ;
 
   //Methods
   std::string WhatAmI() const override ;
