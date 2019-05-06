@@ -3,6 +3,7 @@
 #include "Operation.h"
 #include "Operator.h"
 #include "Leaf.h"
+#include"Tree.h"
 
 int main() {
 
@@ -12,7 +13,7 @@ int main() {
   //Operator op ;
   Leaf l ;
 
-
+  Tree t ;
 
 
 
