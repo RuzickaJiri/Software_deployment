@@ -1,5 +1,6 @@
 #include"Tree.h"
 #include"Node.h"
+#include"Operator.h"
 #include"Leaf.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,13 +43,27 @@ void Tree::append(Node* new_node){
 }
 
 
-void Tree::replace(Node* new_node, int position){
-      
-      new_node->set_previous(to_replace_node->previous_) ;
-      if (to_replace_node == to_replace_node->previous_->next_) {
-        to_replace_node->previous_->set_next(new_node) ;
-      } else {
-        to_replace_node->previous_->set_second_next(new_node) ;
-      //while ()
-      delete to_replace_node ;    
+void Tree::replace(Node* new_node, int position) {
+  
+  node_to_replace = Nodes_.at(position) ;
+  new_node->set_previous(node_to_replace->previous_) ;
+  if (to_replace_node == node_to_replace->previous_->next_) {
+    node_to_replace->previous_->set_next(new_node) ;
+  } else {
+    node_to_replace->previous_->set_second_next(new_node) ;
+  }  
+  
+  if (new_node->WhatAmI() == "Operator") {
+    if (to_replace_node->WhatAmI() == "Operator") {
+      new_node->set_next(to_replace_node->next_) ;
+      if (new_node->binary() == true) {
+        if (to_replace_node->binary() == true) {
+          new_node->set_second_next(to_replace_node->second_next_) ;
+        } else {
+          Leaf* new_second_leaf = new Leaf() ;
+          new_node->set_second_next(new_second_leaf) ;
+        }
+      }
+    }
+  }  
 }
