@@ -10,6 +10,7 @@ class Tree{
 
     //Constructors
     Tree();
+    Tree(const Tree& tr);
     //Destructor
     ~Tree();
     //Methods
@@ -20,6 +21,7 @@ class Tree{
     void append(Node* new_node, int position);
     
     float fitness();
+	Leaf* head();
     float Nodes();
     
     

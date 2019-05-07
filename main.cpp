@@ -12,10 +12,13 @@ int main() {
   Operation o ;
   Operator op ;
   Leaf l ;
-  Generation* g = new Generation(4);
+  //Generation* g = new Generation(4);
 
   Tree t ;
-  t.append(&op,1) ;
+  t.append(&op,0) ;
+  t.head()->previous();
+  t.head();
+
   //t.Mutation() ;
 
 

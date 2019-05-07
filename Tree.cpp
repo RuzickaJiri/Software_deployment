@@ -14,11 +14,21 @@ Tree::Tree(){
    
 }
 
+Tree::Tree(const Tree& tr){
+  fitness_ = tr.fitness_ ;
+  head_ = tr.head_ ;
+  std::vector<Node*> Nodes_ ;
+}
+
 Tree::~Tree(){
-  delete head_;
+  //delete head_;
   for(const auto& obj : Nodes_){
     delete obj;
   }
+}
+
+Leaf* Tree::head(){
+  return head_;
 }
 
 Tree Tree::Mutation() {
@@ -50,6 +60,8 @@ Tree Tree::Mutation() {
       this->append(new_node, position);
       break;
   }
+  delete op ;
+  delete leaf ;
   return *this ;
 }
 
@@ -66,10 +78,14 @@ void Tree::append(Node* new_node, int position){
   }
   
   new_node->set_next(node_to_replace) ;
+  node_to_replace->set_previous(new_node);
   if (new_node->oper()->binary() == true) {
     Leaf* new_second_leaf = new Leaf() ;
     new_node->set_second_next(new_second_leaf) ;
+    delete new_second_leaf ;
   }
+  
+  Nodes_.push_back(new_node) ;
   
   /*
   Node* head = Nodes_.at(position);
@@ -108,4 +124,5 @@ void Tree::replace(Node* new_node, int position) {
       }
     }
   }  
+  Nodes_.push_back(new_node) ;
 }
