@@ -54,8 +54,24 @@ Tree Tree::Mutation() {
 }
 
 void Tree::append(Node* new_node, int position){
-
-   
+  
+  Node* node_to_replace = Nodes_.at(position) ;
+  if (node_to_replace->previous() != nullptr) {
+    new_node->set_previous(node_to_replace->previous()) ;
+    if (node_to_replace == node_to_replace->previous()->next()) {
+      node_to_replace->previous()->set_next(new_node) ;
+    } else {
+      node_to_replace->previous()->set_second_next(new_node) ;
+    }
+  }
+  
+  new_node->set_next(node_to_replace) ;
+  if (new_node->oper()->binary() == true) {
+    Leaf* new_second_leaf = new Leaf() ;
+    new_node->set_second_next(new_second_leaf) ;
+  }
+  
+  /*
   Node* head = Nodes_.at(position);
   Nodes_.at(position)=new_node;
   head->previous()->set_next(new_node);
@@ -63,18 +79,21 @@ void Tree::append(Node* new_node, int position){
   new_node->set_previous(head->previous());
   
   head->set_previous(new_node) ;
+   */
 }
 
 
 void Tree::replace(Node* new_node, int position) {
   
   Node* node_to_replace = Nodes_.at(position) ;
-  new_node->set_previous(node_to_replace->previous()) ;
-  if (node_to_replace == node_to_replace->previous()->next()) {
-    node_to_replace->previous()->set_next(new_node) ;
-  } else {
-    node_to_replace->previous()->set_second_next(new_node) ;
-  }  
+  if (node_to_replace->previous() != nullptr) {
+    new_node->set_previous(node_to_replace->previous()) ;
+    if (node_to_replace == node_to_replace->previous()->next()) {
+      node_to_replace->previous()->set_next(new_node) ;
+    } else {
+      node_to_replace->previous()->set_second_next(new_node) ;
+    }
+  }
   
   if (new_node->WhatAmI() == "Operator") {
     if (node_to_replace->WhatAmI() == "Operator") {
