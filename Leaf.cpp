@@ -32,3 +32,4 @@ int Leaf::value() const {
 std::string Leaf::print() const {
   return "Leaf";
 }
+

@@ -79,14 +79,6 @@ int main() {
   t2.Mutation() ;
 
 
-  Generation* g1=new Generation();
-  std::cout<< "________________________________________________" <<std::endl;
-  (*g1).PrintTree(0);
-
-
-
-
-
 
 
 
@@ -112,3 +104,4 @@ int main() {
   delete g ;
   return 0 ;
 }
+

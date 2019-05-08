@@ -9,11 +9,25 @@ Generation::Generation(size_t nbr_trees){
 Generation::Generation(){
   nbr_trees_=1;
   Trees_= new Tree[nbr_trees_];
-  Tree t1 ;
   Operator op1 ;
-  Operator op2 ;
+ Operator op2 ;
+ Operator op3 ;
+  Tree t1 ;
   t1.append(&op1,0) ;
-  t1.append(&op2,1) ;
+ t1.append(&op2,1) ;
+ t1.append(&op3,2) ;
+
+
+  t1.Mutation() ;
+  
+  t1.Mutation() ;
+ 
+
+  t1.Mutation() ;
+  
+  t1.Mutation() ;
+
+
   Trees_[0]=t1;
 
 }
