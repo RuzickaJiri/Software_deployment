@@ -1,3 +1,4 @@
+
 #ifndef TREE_
 #define TREE_
 #include<iostream>
@@ -15,10 +16,11 @@ class Tree{
     ~Tree();
     //Methods
 
-    Tree  Mutation();
+    Tree  Mutation(int);
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
+    void PrintTree(Node* x);
     
     float fitness();
 	Leaf* head();

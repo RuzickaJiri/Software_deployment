@@ -52,32 +52,9 @@ int main() {
   std::cout<< t1.Nodes().size() <<std::endl;
   std::cout<< t1.head()->previous()->oper() <<std::endl;
   std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
-  //t.Mutation() ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  t1.Mutation(1) ;
+  t1.Mutation(1) ;
+  t1.Mutation(1) ;
   delete g ;
   return 0 ;
 }

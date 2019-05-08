@@ -21,9 +21,11 @@ Tree::Tree(const Tree& tr){
 }
 
 Tree::~Tree(){
+  /*Nodes_.clear();
   for(const auto& obj : Nodes_){
     delete obj;
   } 
+  delete Nodes_;*/
 }
 
 Leaf* Tree::head(){
@@ -34,13 +36,13 @@ std::vector<Node*> Tree::Nodes(){
   return Nodes_;
 }
 
-Tree Tree::Mutation() {
+Tree Tree::Mutation(int r) {
   Operator* op = new Operator() ;
   Leaf* leaf = new Leaf() ;
   Node* new_node;
   int position = std::rand()%Nodes_.size() ;
-  Node* random_node = Nodes_.at(position) ;
-  int r = std::rand() %2;
+  //Node* random_node = Nodes_.at(position) ;
+  //int r = std::rand() %2;
   switch(r) {
     case 0 :
     {
@@ -54,7 +56,7 @@ Tree Tree::Mutation() {
     }
   }
 
-  r = std::rand() %2;
+  //r = 0; //std::rand() %2;
   switch(r) {
     case 0 :
       this->replace(new_node, position) ;
@@ -63,29 +65,29 @@ Tree Tree::Mutation() {
       this->append(new_node, position);
       break;
   }
-  delete op ;
-  delete leaf ;
   return *this ;
 }
 
 void Tree::append(Node* new_node, int position){
   
-  Node* node_to_replace = Nodes_.at(position) ;
+  Node* node_to_replace = Nodes_.at(position) ;// get node to append
   if (node_to_replace->previous() != nullptr) {
     new_node->set_previous(node_to_replace->previous()) ;
-    if (node_to_replace == node_to_replace->previous()->next()) {
+    if (node_to_replace == node_to_replace->previous()->next()) {//if first next
       node_to_replace->previous()->set_next(new_node) ;
-    } else {
+    } else {//second next
       node_to_replace->previous()->set_second_next(new_node) ;
     }
   }
   
   new_node->set_next(node_to_replace) ;
   node_to_replace->set_previous(new_node);
-  if (new_node->oper()->binary() == true) {
-    Leaf* new_second_leaf = new Leaf() ;
-    new_node->set_second_next(new_second_leaf) ;
-    delete new_second_leaf ;
+  if ((*new_node).WhatAmI()=="Operator"){
+    if (new_node->oper()->binary() == true) {
+      Leaf* new_second_leaf = new Leaf() ;
+      new_node->set_second_next(new_second_leaf) ;
+      //delete new_second_leaf ;
+    }
   }
   
   Nodes_.push_back(new_node) ;
