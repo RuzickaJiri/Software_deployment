@@ -88,7 +88,7 @@ void Tree::append(Node* new_node, int position){
     Leaf* new_second_leaf = new Leaf() ;
     new_node->set_second_next(new_second_leaf) ;
     Nodes_.push_back(new_second_leaf) ;
-    delete new_second_leaf ;
+    //delete new_second_leaf ;
   }
   
   Nodes_.push_back(new_node) ;
@@ -138,11 +138,56 @@ void Tree::PrintTree(Node* x){
   
   if (x != nullptr){
     if (x->WhatAmI() == "Leaf"){
-      std::cout<< x->WhatAmI() <<std::endl;
+      std::cout<< x->WhatAmI() <<x->value() <<std::endl;
     } else {
     PrintTree(x->next());
-    std::cout<< x->WhatAmI() <<std::endl;
+    std::cout<< x->WhatAmI() <<x->oper()->operation()<<std::endl;
     PrintTree(x->second_next());
     }
   }
+}
+/*
+std::vector<std::string> Tree::Formula(Node* x){
+  
+  std::vector<std::string> s;
+  if (x != nullptr){
+    if (x->WhatAmI() == "Leaf"){
+      //s.push_back(std::to_string(x->value()));
+      s.push_back("x->WhatAmI()");
+    } else {
+      Formula(x->next());
+      s.push_back(x->oper()->operation());
+      Formula(x->second_next());
+    }
+  }
+  return s;
+ }*/
+
+int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
+  
+  int size = xlabels.size();
+  if (n != nullptr){
+    if (n->WhatAmI() == "Leaf"){
+      for (int i=0; i<size; i++) {
+        if (n->value() == xlabels[i]){
+          return x[i];
+        }
+      }
+
+    } else {
+      if(n->oper()->operation() == "AND") {
+        return CalcFormula(n->next(),x,xlabels) && CalcFormula(n->second_next(),x,xlabels);
+      }
+      if(n->oper()->operation() == "OR") {
+        return CalcFormula(n->next(),x,xlabels) || CalcFormula(n->second_next(),x,xlabels);
+      }
+      if(n->oper()->operation() == "NOT") {
+        return !CalcFormula(n->next(),x,xlabels);
+      }
+    }
+  }
+}
+
+int Tree::CalcFitness(int formula, int y){
+  return formula - y;
 }

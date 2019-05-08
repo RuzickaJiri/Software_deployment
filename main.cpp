@@ -54,8 +54,16 @@ int main() {
   std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
   //t.Mutation() ;
 
-t1.PrintTree(&op1);
-
+  t1.PrintTree(&op2);
+  
+  std::vector<std::string> xlabels;
+  xlabels.push_back("x1");
+  xlabels.push_back("x2");
+  bool x[] = {1,0};
+  
+  int f = t1.CalcFormula(&op2, x, xlabels);
+  std::cout<< f <<std::endl;
+  std::cout<< t1.CalcFitness(f,1) <<std::endl;;
 
 
 
