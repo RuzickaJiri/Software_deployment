@@ -25,7 +25,6 @@ class Tree{
     float fitness();
     Node* head();
     std::vector<Node*> Nodes();
-    void PrintTree(Node* x) ;
     
     
   protected : 

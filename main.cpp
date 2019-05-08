@@ -36,58 +36,54 @@ int main() {
   std::cout<< "Test Tree" <<std::endl;
   Tree t1 ;
   Tree t2 ;
-  std::cout<< t1.head()->previous() <<std::endl;
-  //std::cout<< t1.head()->value() <<std::endl;
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.PrintTree(&l1) ;  
+
+  std::cout<< "Test PrintTree1" <<std::endl;
+  t1.PrintTree(t1.head()) ;  
 
   t1.append(&op1,0) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  //std::cout<< t1.head()->value() <<std::endl;
-  std::cout<< t1.head()->previous() <<std::endl;
-  std::cout<< t1.head()->previous()->oper()->operation() <<std::endl;
   
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.PrintTree(&op1) ;
+  std::cout<< "Test PrintTree2" <<std::endl;
+  t1.PrintTree(t1.head()) ;
 
   t1.append(&op2,1) ;
   std::cout<< t1.Nodes().size() <<std::endl;
 
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.PrintTree(&op2) ;
+  std::cout<< "Test PrintTree3" <<std::endl;
+  t1.PrintTree(t1.head()) ;
  
   t1.replace(&l2,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->oper() <<std::endl;
 
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.PrintTree(&op2) ;
+  std::cout<< "Test PrintTree4" <<std::endl;
+  t1.PrintTree(t1.head()) ;
 
   t1.append(&op3,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->oper() <<std::endl;
 
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.PrintTree(&op3) ;
+  std::cout<< "Test PrintTree5" <<std::endl;
+  t1.PrintTree(t1.head()) ;
   
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.Nodes()[1]) ;
+  t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.Nodes()[2]) ;
+  t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.Nodes()[2]) ;
+  t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
 
 
   Generation* g1=new Generation();
   std::cout<< "________________________________________________" <<std::endl;
   (*g1).PrintTree(0);
+
+
 
 
 

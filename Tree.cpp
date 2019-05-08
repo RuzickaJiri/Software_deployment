@@ -39,12 +39,15 @@ Tree Tree::Mutation() {
   Leaf* leaf = new Leaf() ;
   Node* new_node;
   int position = std::rand()%Nodes_.size() ;
-  //Node* random_node = Nodes_.at(position) ;
+
   int r = std::rand() %2;
   switch(r) {
     case 0 :
     {
         new_node = op ;
+        if (head_->WhatAmI() == "Leaf") {
+          head_ = new_node ;
+        }
         break;  
     }
     case 1 :
@@ -82,14 +85,17 @@ void Tree::append(Node* new_node, int position){
   
   new_node->set_next(node_to_replace) ;
   node_to_replace->set_previous(new_node);
-  if ((*new_node).WhatAmI()=="Operator"){
-    if (new_node->oper()->binary() == true) {
+  if (new_node->WhatAmI() == "Operator") {
+	if (new_node->oper()->binary()) {
       Leaf* new_second_leaf = new Leaf() ;
       new_node->set_second_next(new_second_leaf) ;
       //delete new_second_leaf ;
+      Nodes_.push_back(new_second_leaf) ;
     }
   }
-  
+  if (head_ == node_to_replace && new_node->WhatAmI() != "Leaf" ) {
+    head_ = new_node ;
+  }
   Nodes_.push_back(new_node) ;
   
   /*
@@ -131,15 +137,18 @@ void Tree::replace(Node* new_node, int position) {
     }
   }  
   Nodes_.push_back(new_node) ;
+  if (head_ == node_to_replace && new_node->WhatAmI() != "Leaf") {
+    head_ = new_node ;
+  }
 }
 
 void Tree::PrintTree(Node* x){
   
   if (x != nullptr){
     if (x->WhatAmI() == "Leaf"){
-      std::cout<< x->WhatAmI() <<std::endl;
+      std::cout<< x->print() <<std::endl;
     } else {
-      std::cout<< x->WhatAmI() <<std::endl;
+      std::cout<< x->print() <<std::endl;
       PrintTree(x->next());
       if (x->oper()->binary()) {
         PrintTree(x->second_next());
