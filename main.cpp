@@ -52,7 +52,6 @@ int main() {
 
   t1.append(&op2,1) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
 
   std::cout<< "Test PrintTree" <<std::endl;
   t1.PrintTree(&op2) ;
@@ -78,13 +77,12 @@ int main() {
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.Nodes()[1]) ;
+  t2.PrintTree(t2.Nodes()[2]) ;
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.Nodes()[1]) ;
+  t2.PrintTree(t2.Nodes()[2]) ;
   t2.Mutation() ;
-
 
 
 
