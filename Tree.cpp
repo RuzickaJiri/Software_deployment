@@ -129,3 +129,16 @@ void Tree::replace(Node* new_node, int position) {
   }  
   Nodes_.push_back(new_node) ;
 }
+
+void Tree::PrintTree(Node* x){
+  
+  if (x != nullptr){
+    if (x->WhatAmI() == "Leaf"){
+      std::cout<< x->WhatAmI() <<std::endl;
+    } else {
+    PrintTree(x->next());
+    std::cout<< x->WhatAmI() <<std::endl;
+    PrintTree(x->second_next());
+    }
+  }
+}
