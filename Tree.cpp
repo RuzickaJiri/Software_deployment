@@ -20,10 +20,10 @@ Tree::Tree(const Tree& tr){
   std::vector<Node*> Nodes_ ;
 }
 
-Tree::~Tree(){
+Tree::~Tree(){/*
   for(const auto& obj : Nodes_){
     delete obj;
-  } 
+  } */
 }
 
 Node* Tree::head(){

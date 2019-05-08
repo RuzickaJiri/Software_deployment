@@ -16,14 +16,14 @@ class Tree{
     ~Tree();
     //Methods
 
-    Tree  Mutation(int);
+    Tree  Mutation();
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
-    void PrintTree(Node* x);
+
     
     float fitness();
-	Node* head();
+    Node* head();
     std::vector<Node*> Nodes();
     void PrintTree(Node* x) ;
     
