@@ -21,14 +21,12 @@ Tree::Tree(const Tree& tr){
 }
 
 Tree::~Tree(){
-  /*Nodes_.clear();
   for(const auto& obj : Nodes_){
     delete obj;
   } 
-  delete Nodes_;*/
 }
 
-Leaf* Tree::head(){
+Node* Tree::head(){
   return head_;
 }
 
@@ -36,13 +34,13 @@ std::vector<Node*> Tree::Nodes(){
   return Nodes_;
 }
 
-Tree Tree::Mutation(int r) {
+Tree Tree::Mutation() {
   Operator* op = new Operator() ;
   Leaf* leaf = new Leaf() ;
   Node* new_node;
   int position = std::rand()%Nodes_.size() ;
   //Node* random_node = Nodes_.at(position) ;
-  //int r = std::rand() %2;
+  int r = std::rand() %2;
   switch(r) {
     case 0 :
     {
@@ -56,7 +54,7 @@ Tree Tree::Mutation(int r) {
     }
   }
 
-  //r = 0; //std::rand() %2;
+  r = std::rand() %2;
   switch(r) {
     case 0 :
       this->replace(new_node, position) ;
@@ -65,6 +63,8 @@ Tree Tree::Mutation(int r) {
       this->append(new_node, position);
       break;
   }
+  //delete op ;
+  //delete leaf ;
   return *this ;
 }
 
@@ -125,6 +125,7 @@ void Tree::replace(Node* new_node, int position) {
         } else {
           Leaf* new_second_leaf = new Leaf() ;
           new_node->set_second_next(new_second_leaf) ;
+          Nodes_.push_back(new_second_leaf) ;
         }
       }
     }
@@ -138,9 +139,11 @@ void Tree::PrintTree(Node* x){
     if (x->WhatAmI() == "Leaf"){
       std::cout<< x->WhatAmI() <<std::endl;
     } else {
-    PrintTree(x->next());
-    std::cout<< x->WhatAmI() <<std::endl;
-    PrintTree(x->second_next());
+      std::cout<< x->WhatAmI() <<std::endl;
+      PrintTree(x->next());
+      if (x->oper()->binary()) {
+        PrintTree(x->second_next());
+      }
     }
   }
 }

@@ -20,6 +20,7 @@ int main() {
   //Nodes Test
   Operator op1 ;
   Operator op2 ;
+  Operator op3 ;
   Leaf l1 ;
   Leaf l2 ;
   std::cout<< op1.oper()->operation() << op1.oper()->binary() <<std::endl;
@@ -36,25 +37,77 @@ int main() {
   Tree t1 ;
   Tree t2 ;
   std::cout<< t1.head()->previous() <<std::endl;
-  std::cout<< t1.head()->value() <<std::endl;
+  //std::cout<< t1.head()->value() <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.PrintTree(&l1) ;  
 
   t1.append(&op1,0) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->value() <<std::endl;
+  //std::cout<< t1.head()->value() <<std::endl;
   std::cout<< t1.head()->previous() <<std::endl;
   std::cout<< t1.head()->previous()->oper()->operation() <<std::endl;
+  
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.PrintTree(&op1) ;
 
   t1.append(&op2,1) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
 
-  t1.replace(&l2,1) ;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.PrintTree(&op2) ;
+ 
+  t1.replace(&l2,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
   std::cout<< t1.head()->previous()->oper() <<std::endl;
-  std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
-  t1.Mutation(1) ;
-  t1.Mutation(1) ;
-  t1.Mutation(1) ;
+
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.PrintTree(&op2) ;
+
+  t1.append(&op3,2) ;
+  std::cout<< t1.Nodes().size() <<std::endl;
+  std::cout<< t1.head()->previous()->oper() <<std::endl;
+
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.PrintTree(&op3) ;
+  
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.Nodes()[1]) ;
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.Nodes()[2]) ;
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.Nodes()[2]) ;
+  t2.Mutation() ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   delete g ;
   return 0 ;
 }

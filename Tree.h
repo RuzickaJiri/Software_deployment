@@ -23,15 +23,16 @@ class Tree{
     void PrintTree(Node* x);
     
     float fitness();
-	Leaf* head();
+	Node* head();
     std::vector<Node*> Nodes();
+    void PrintTree(Node* x) ;
     
     
   protected : 
     
     std::vector<Node*> Nodes_;
     float fitness_;
-    Leaf* head_;
+    Node* head_;
 };
 
 

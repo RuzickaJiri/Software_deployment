@@ -3,7 +3,7 @@
 #include <iostream>
 
 std::string Operator::WhatAmI() const {
-  return "Operator" ;
+  return "Operator" + oper()->operation() ;
 }
 
 //Constructor

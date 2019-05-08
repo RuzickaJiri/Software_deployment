@@ -12,7 +12,7 @@ public:
   //Setters
 
   //Getters
-  int value() const ;
+  int value() const override;
 
   //Methods
   std::string WhatAmI() const override ;
