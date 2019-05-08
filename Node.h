@@ -21,7 +21,7 @@ public:
   	virtual void set_second_next(Node* newval) ;
   	virtual Operation* oper() const ; 
   	virtual Node* second_next() const ;
-  virtual int value() const ;
+  virtual std::string value() const ;
     
   //Constructors
     Node(const Node& model) ; // copy constructor - deleted
