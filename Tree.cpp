@@ -26,7 +26,7 @@ Tree::~Tree(){
   } 
 }
 
-Leaf* Tree::head(){
+Node* Tree::head(){
   return head_;
 }
 
@@ -39,7 +39,7 @@ Tree Tree::Mutation() {
   Leaf* leaf = new Leaf() ;
   Node* new_node;
   int position = std::rand()%Nodes_.size() ;
-  Node* random_node = Nodes_.at(position) ;
+  //Node* random_node = Nodes_.at(position) ;
   int r = std::rand() %2;
   switch(r) {
     case 0 :
@@ -63,8 +63,8 @@ Tree Tree::Mutation() {
       this->append(new_node, position);
       break;
   }
-  delete op ;
-  delete leaf ;
+  //delete op ;
+  //delete leaf ;
   return *this ;
 }
 
@@ -85,7 +85,7 @@ void Tree::append(Node* new_node, int position){
   if (new_node->oper()->binary() == true) {
     Leaf* new_second_leaf = new Leaf() ;
     new_node->set_second_next(new_second_leaf) ;
-    delete new_second_leaf ;
+    //delete new_second_leaf ;
   }
   
   Nodes_.push_back(new_node) ;
@@ -136,9 +136,13 @@ void Tree::PrintTree(Node* x){
     if (x->WhatAmI() == "Leaf"){
       std::cout<< x->WhatAmI() <<std::endl;
     } else {
-    PrintTree(x->next());
-    std::cout<< x->WhatAmI() <<std::endl;
-    PrintTree(x->second_next());
+      std::cout<< x->WhatAmI() <<std::endl;
+      PrintTree(x->next());
+      if (x->oper()->binary()) {
+        PrintTree(x->second_next());
+      }
     }
   }
 }
+
+
