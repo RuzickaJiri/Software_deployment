@@ -21,14 +21,17 @@ Tree::Tree(const Tree& tr){
 }
 
 Tree::~Tree(){
-  //delete head_;
   for(const auto& obj : Nodes_){
     delete obj;
-  }
+  } 
 }
 
 Leaf* Tree::head(){
   return head_;
+}
+
+std::vector<Node*> Tree::Nodes(){
+  return Nodes_;
 }
 
 Tree Tree::Mutation() {

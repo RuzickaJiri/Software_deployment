@@ -12,10 +12,10 @@ Leaf::Leaf(){
   int r = std::rand() %2;
   switch(r) {
     case 0 :
-      value_ = 0;
+      value_ = 0; //constant
       break;
     case 1 :
-      value_ = 1;
+      value_ = 1; //variable
       break;
   }
 } 

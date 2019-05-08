@@ -22,7 +22,7 @@ class Tree{
     
     float fitness();
 	Leaf* head();
-    float Nodes();
+    std::vector<Node*> Nodes();
     
     
   protected : 

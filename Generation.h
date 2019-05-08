@@ -6,6 +6,7 @@
 class Generation{
   public : 
     Generation(size_t nbr_trees_);
+    ~Generation();
 
     Tree GetBestIndividual() const;
     Tree GetBestFormula() const;
