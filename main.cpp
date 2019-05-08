@@ -36,9 +36,9 @@ int main() {
   std::cout<< "Test Tree" <<std::endl;
   Tree t1 ;
   Tree t2 ;
-  //std::cout<< t1.head()->value() <<std::endl;
+
   std::cout<< "Test PrintTree1" <<std::endl;
-  t1.PrintTree(&l1) ;  
+  t1.PrintTree(t1.head()) ;  
 
   t1.append(&op1,0) ;
   std::cout<< t1.Nodes().size() <<std::endl;

@@ -1,3 +1,4 @@
+
 #ifndef TREE_
 #define TREE_
 #include<iostream>
@@ -19,11 +20,11 @@ class Tree{
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
+    void PrintTree(Node* x);
     
     float fitness();
 	Node* head();
     std::vector<Node*> Nodes();
-    void PrintTree(Node* x) ;
     
     
   protected : 
