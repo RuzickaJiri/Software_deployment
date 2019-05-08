@@ -10,6 +10,8 @@
 Tree::Tree(){
    fitness_ = 0;
    head_ = new Leaf();
+ // head_ = new Operator();
+  //head_ -> set_next(new Leaf());
    Nodes_.push_back(head_);
    
 }
@@ -26,7 +28,7 @@ Tree::~Tree(){
   } 
 }
 
-Leaf* Tree::head(){
+Node* Tree::head(){
   return head_;
 }
 
@@ -85,6 +87,7 @@ void Tree::append(Node* new_node, int position){
   if (new_node->oper()->binary() == true) {
     Leaf* new_second_leaf = new Leaf() ;
     new_node->set_second_next(new_second_leaf) ;
+    Nodes_.push_back(new_second_leaf) ;
     delete new_second_leaf ;
   }
   
@@ -123,6 +126,7 @@ void Tree::replace(Node* new_node, int position) {
         } else {
           Leaf* new_second_leaf = new Leaf() ;
           new_node->set_second_next(new_second_leaf) ;
+          Nodes_.push_back(new_second_leaf) ;
         }
       }
     }

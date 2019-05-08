@@ -54,7 +54,7 @@ int main() {
   std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
   //t.Mutation() ;
 
-
+t1.PrintTree(&op1);
 
 
 
