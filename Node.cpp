@@ -39,3 +39,7 @@ void Node::set_second_next(Node* newval){
 std::string Node::value() const {
   return 0 ;
 }
+
+std::string Node::print() const {
+  return 0 ;
+}

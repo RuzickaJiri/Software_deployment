@@ -28,3 +28,7 @@ Leaf::~Leaf(){
 std::string Leaf::value() const {
   return value_ ;
 }
+
+std::string Leaf::print() const {
+  return "Leaf";
+}

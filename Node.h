@@ -18,6 +18,7 @@ public:
 
   //Methods
     virtual std::string WhatAmI() const = 0;
+    virtual std::string print() const ;
   	virtual void set_second_next(Node* newval) ;
   	virtual Operation* oper() const ; 
   	virtual Node* second_next() const ;

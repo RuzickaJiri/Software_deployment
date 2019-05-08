@@ -20,6 +20,7 @@ int main() {
   //Nodes Test
   Operator op1 ;
   Operator op2 ;
+  Operator op3 ;
   Leaf l1 ;
   Leaf l2 ;
   std::cout<< op1.oper()->operation() << op1.oper()->binary() <<std::endl;
@@ -35,24 +36,31 @@ int main() {
   std::cout<< "Test Tree" <<std::endl;
   Tree t1 ;
   Tree t2 ;
-  std::cout<< t1.head()->previous() <<std::endl;
-  std::cout<< t1.head()->value() <<std::endl;
+
+  std::cout<< "Test PrintTree1" <<std::endl;
+  t1.PrintTree(t1.head()) ;  
 
   t1.append(&op1,0) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->value() <<std::endl;
-  std::cout<< t1.head()->previous() <<std::endl;
-  std::cout<< t1.head()->previous()->oper()->operation() <<std::endl;
+  
+  std::cout<< "Test PrintTree2" <<std::endl;
+  t1.PrintTree(t1.head()) ;
 
   t1.append(&op2,1) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
 
-  t1.replace(&l2,1) ;
+  std::cout<< "Test PrintTree3" <<std::endl;
+  t1.PrintTree(t1.head()) ;
+ 
+  t1.replace(&l2,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
-  std::cout<< t1.head()->previous()->oper() <<std::endl;
-  std::cout<< t1.head()->previous()->previous()->oper()->operation() << op2.oper()->operation() <<std::endl;
-  //t.Mutation() ;
+
+  std::cout<< "Test PrintTree4" <<std::endl;
+  t1.PrintTree(t1.head()) ;
+
+  t1.append(&op3,2) ;
+  std::cout<< t1.Nodes().size() <<std::endl;
+
 
   t1.PrintTree(&op2);
   
@@ -64,6 +72,29 @@ int main() {
   int f = t1.CalcFormula(&op2, x, xlabels);
   std::cout<< f <<std::endl;
   std::cout<< t1.CalcFitness(f,1) <<std::endl;;
+
+  std::cout<< "Test PrintTree5" <<std::endl;
+  t1.PrintTree(t1.head()) ;
+  
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.head()) ;
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.head()) ;
+  t2.Mutation() ;
+  std::cout<< "Test Mutation" <<std::endl;
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.PrintTree(t2.head()) ;
+  t2.Mutation() ;
+
+
+
+
+
+
 
 
 

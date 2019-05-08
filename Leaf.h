@@ -16,6 +16,7 @@ public:
 
   //Methods
   std::string WhatAmI() const override ;
+  std::string print() const override;
     
   //Constructors
   Leaf() ;
