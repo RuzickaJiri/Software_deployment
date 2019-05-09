@@ -71,7 +71,7 @@ int main() {
   
   int f = t1.CalcFormula(&op2, x, xlabels);
   std::cout<< f <<std::endl;
-  std::cout<< t1.CalcFitness(f,1) <<std::endl;;
+  std::cout<< t1.CalcFitness(&op2, x, xlabels,1) <<std::endl;;
 
   std::cout<< "Test PrintTree5" <<std::endl;
   t1.PrintTree(t1.head()) ;

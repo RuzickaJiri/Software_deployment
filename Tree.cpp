@@ -198,8 +198,8 @@ int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   }
 }
 
-int Tree::CalcFitness(int formula, int y){
-  return formula - y;
+int Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
+  return CalcFormula(n,x,xlabels) - y;
 }
 
 
