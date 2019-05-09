@@ -40,8 +40,18 @@ static PyObject*  PrintA(PyObject* self, PyObject* args){
     Py_INCREF(Py_None);
     return Py_None;
 }
+*/
 
 
+static PyObject*  PrintGeneration(PyObject* self, PyObject* args){
+    Generation*  my_Generation = GenerationPythonToC(args);
+    my_Generation->PrintTree(0);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+
+/*
 
 static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
     PyListObject* listOfAs;
@@ -75,12 +85,27 @@ return NULL;
 
 }
 
+static PyObject* CreateGenerationOneTree(PyObject* self){
+	/*if (!PyArg_ParseTuple(args, "h", &nbr_trees)){
+		return NULL;
+	}*/
+	Generation* my_Generation = new Generation();
+	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION, GenerationCapsuleDestructor);
+	return capsule;
+
+return NULL;
+
+}
+
 
 
 // Module functions {<python function name>, <function in wrapper>, <parameters flag>, <doctring>}
 // https://docs.python.org/3/c-api/structures.html
 static PyMethodDef module_funcs[] = {
     {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tnumber of equations in your generation (size_t): the parameter\n\nReturns:\n\t capsule: Object Generation capsule"},
+		
+    {"create_generation_one_tree", (PyCFunction)CreateGenerationOneTree, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
+    {"printTree", (PyCFunction)PrintGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
 		{NULL, NULL, METH_NOARGS, NULL}
 };
 
