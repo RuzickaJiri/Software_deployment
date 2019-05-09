@@ -22,7 +22,7 @@ Tree::Tree(const Tree& tr){
 
 Tree::~Tree(){
   for(const auto& obj : Nodes_){
-    delete obj;
+    //delete obj;
   } 
 }
 
@@ -35,6 +35,23 @@ std::vector<Node*> Tree::Nodes(){
 }
 
 Tree Tree::Mutation() {
+
+
+  int position = std::rand()%Nodes_.size() ;
+  int r = std::rand() %4;
+  if (r > 2) {
+	Operator* new_node = new Operator() ;
+	this->append(new_node, position);
+	} else if (r==1){
+	  Operator* new_node = new Operator() ;
+      this->replace(new_node, position) ;
+	} else {
+      Leaf* new_node = new Leaf() ;
+      this->replace(new_node, position) ;
+  }
+  
+
+  /*
   Operator* op = new Operator() ;
   Leaf* leaf = new Leaf() ;
   Node* new_node;
@@ -56,8 +73,6 @@ Tree Tree::Mutation() {
       break;
     }
   }
-
-  r = std::rand() %2;
   switch(r) {
     case 0 :
       this->replace(new_node, position) ;
@@ -66,6 +81,7 @@ Tree Tree::Mutation() {
       this->append(new_node, position);
       break;
   }
+  */
   //delete op ;
   //delete leaf ;
   return *this ;
@@ -93,9 +109,10 @@ void Tree::append(Node* new_node, int position){
       Nodes_.push_back(new_second_leaf) ;
     }
   }
-  if (head_ == node_to_replace && new_node->WhatAmI() != "Leaf" ) {
+  if (head_ == node_to_replace) {
     head_ = new_node ;
   }
+  
   Nodes_.push_back(new_node) ;
   
   /*
@@ -136,8 +153,9 @@ void Tree::replace(Node* new_node, int position) {
       }
     }
   }  
+  Nodes_.erase(Nodes_.begin()+position) ;
   Nodes_.push_back(new_node) ;
-  if (head_ == node_to_replace && new_node->WhatAmI() != "Leaf") {
+  if (head_ == node_to_replace) {
     head_ = new_node ;
   }
 }

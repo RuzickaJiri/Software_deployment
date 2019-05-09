@@ -64,6 +64,7 @@ int main() {
 
   t1.PrintTree(&op2);
   
+  std::cout<< "Test Fitness" <<std::endl;
   std::vector<std::string> xlabels;
   xlabels.push_back("x1");
   xlabels.push_back("x2");
