@@ -33,3 +33,7 @@ Node* Operator::second_next() const {
 void Operator::set_second_next(Node* newval){
   second_next_ = newval; 
 }
+
+std::string Operator::print() const {
+  return "Operator" + oper_->operation() ;
+}

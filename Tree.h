@@ -1,3 +1,4 @@
+
 #ifndef TREE_
 #define TREE_
 #include<iostream>
@@ -10,6 +11,7 @@ class Tree{
 
     //Constructors
     Tree();
+    Tree(const Tree& tr);
     //Destructor
     ~Tree();
     //Methods
@@ -18,17 +20,25 @@ class Tree{
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
-    void go_through();
+
+    
+
+    void PrintTree(Node* x);
+
     
     float fitness();
-    float Nodes();
-    
+	Node* head();
+    std::vector<Node*> Nodes();
+
+  std::vector<std::string> Formula(Node* x);
+  int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
+  int CalcFitness(int fomula, int y);
     
   protected : 
     
     std::vector<Node*> Nodes_;
     float fitness_;
-    Leaf* head_;
+    Node* head_;
 };
 
 

@@ -26,3 +26,5 @@ std::string Operation::operation() const{
 bool Operation::binary() const{
   return binary_;
 }
+
+

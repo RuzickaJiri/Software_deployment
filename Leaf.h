@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Operation.h"
 #include <string>
 
 #ifndef LEAF_
@@ -11,10 +12,11 @@ public:
   //Setters
 
   //Getters
-  int value() const ;
+  std::string value() const override;
 
   //Methods
   std::string WhatAmI() const override ;
+  std::string print() const override;
     
   //Constructors
   Leaf() ;
@@ -24,7 +26,7 @@ public:
     
 protected:
   
-  int value_ ;
+  std::string value_ ;
   
   
 };

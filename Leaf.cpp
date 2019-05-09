@@ -12,10 +12,10 @@ Leaf::Leaf(){
   int r = std::rand() %2;
   switch(r) {
     case 0 :
-      value_ = 0;
+      value_ = "x1"; //constant
       break;
     case 1 :
-      value_ = 1;
+      value_ = "x2"; //variable
       break;
   }
 } 
@@ -25,6 +25,10 @@ Leaf::~Leaf(){
 }
 
 //Getters
-int Leaf::value() const {
+std::string Leaf::value() const {
   return value_ ;
+}
+
+std::string Leaf::print() const {
+  return "Leaf";
 }

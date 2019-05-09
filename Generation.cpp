@@ -5,6 +5,10 @@ Generation::Generation(size_t nbr_trees){
   Trees_= new Tree[nbr_trees_];
 }
 
+Generation::~Generation(){
+  delete[] Trees_ ;
+}
+
 Tree Generation::GetBestIndividual() const{
     return Trees_[0];
 }
