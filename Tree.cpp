@@ -76,3 +76,6 @@ void Tree::replace(Node* new_node, int position){
       
        
 }
+
+void go_through(){
+  

@@ -18,6 +18,7 @@ class Tree{
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
+    void go_through();
     
     float fitness();
     float Nodes();
