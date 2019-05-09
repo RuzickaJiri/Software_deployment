@@ -20,7 +20,11 @@ class Tree{
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
+
+    
+
     void PrintTree(Node* x);
+
     
     float fitness();
 	Node* head();
@@ -28,7 +32,7 @@ class Tree{
 
   std::vector<std::string> Formula(Node* x);
   int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
-  int CalcFitness(int fomula, int y);
+  int CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
     
   protected : 
     
