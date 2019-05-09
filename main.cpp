@@ -61,6 +61,18 @@ int main() {
   t1.append(&op3,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
 
+
+  t1.PrintTree(&op2);
+  
+  std::vector<std::string> xlabels;
+  xlabels.push_back("x1");
+  xlabels.push_back("x2");
+  bool x[] = {1,0};
+  
+  int f = t1.CalcFormula(&op2, x, xlabels);
+  std::cout<< f <<std::endl;
+  std::cout<< t1.CalcFitness(f,1) <<std::endl;;
+
   std::cout<< "Test PrintTree5" <<std::endl;
   t1.PrintTree(t1.head()) ;
   
@@ -77,6 +89,10 @@ int main() {
   std::cout<< "Test PrintTree" <<std::endl;
   t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
+
+
+
+
 
 
 
