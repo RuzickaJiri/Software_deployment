@@ -17,7 +17,7 @@ Tree::Tree(){
 Tree::Tree(const Tree& tr){
   fitness_ = tr.fitness_ ;
   head_ = tr.head_ ;
-  std::vector<Node*> Nodes_ ;
+  Nodes_ =tr.Nodes_;
 }
 
 Tree::~Tree(){
@@ -35,19 +35,18 @@ std::vector<Node*> Tree::Nodes(){
 }
 
 Tree Tree::Mutation() {
-
-
+  Tree* newTree = new Tree(*this);
   int position = std::rand()%Nodes_.size() ;
   int r = std::rand() %4;
   if (r > 2) {
 	Operator* new_node = new Operator() ;
-	this->append(new_node, position);
+	newTree->append(new_node, position);
 	} else if (r==1){
 	  Operator* new_node = new Operator() ;
-      this->replace(new_node, position) ;
+      newTree->replace(new_node, position) ;
 	} else {
       Leaf* new_node = new Leaf() ;
-      this->replace(new_node, position) ;
+      newTree->replace(new_node, position) ;
   }
   
 
@@ -84,7 +83,7 @@ Tree Tree::Mutation() {
   */
   //delete op ;
   //delete leaf ;
-  return *this ;
+  return *newTree ;
 }
 
 void Tree::append(Node* new_node, int position){
