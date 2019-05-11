@@ -42,6 +42,14 @@ Tree Generation::GetBestIndividual() const{
 Tree Generation::GetBestFormula() const{
     return Trees_[0];
 }
+
+void Generation::AppendTree(Tree t){
+	if(size_>nbr_trees_) {
+		size_++;
+		Trees_[size_]=t;		
+	}
+}
+
 Generation Generation::Evolve(int n,int x,int y,int record){
   /*if(!record){
     for(int i = 0, i<n, ++i){

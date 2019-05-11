@@ -14,6 +14,7 @@ class Generation{
     Tree GetBestFormula() const;
     Generation Evolve(int n,int x,int y,int record);
     void PrintTree(int a);
+    void AppendTree(Tree t);
   protected : 
     Tree * Trees_;
     size_t nbr_trees_;
