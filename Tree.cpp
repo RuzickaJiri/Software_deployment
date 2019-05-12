@@ -18,6 +18,7 @@ Tree::Tree(const Tree& tr){
   fitness_ = tr.fitness_ ;
   head_ = tr.head_ ;
   Nodes_ =tr.Nodes_;
+  std::cout<<"Copy constructor"<<std::endl;
 }
 
 Tree::~Tree(){

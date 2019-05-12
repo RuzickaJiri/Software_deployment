@@ -5,7 +5,7 @@ Generation::Generation(size_t size){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
-}
+  }
 
 Generation::Generation(){
  nbr_trees_=1;
