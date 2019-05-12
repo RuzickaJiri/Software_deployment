@@ -26,9 +26,10 @@ Generation::Generation(){
 
 }
 
-void Generation::PrintTree(int a){
-  if (a<nbr_trees_){
-    Trees_[a].PrintTree(Trees_[a].Nodes()[0]);
+void Generation::PrintTree(){
+  for(int a=0 ; a< nbr_trees_;a++){
+      std::cout<<"Tree : "<<a+1<<std::endl;
+      Trees_[a].PrintTree(Trees_[a].head());
   }
 }
 
