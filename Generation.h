@@ -13,7 +13,7 @@ class Generation{
     Tree GetBestIndividual() const;
     Tree GetBestFormula() const;
     Generation Evolve(int n,int x,int y,int record);
-    void PrintTree(int a);
+    void PrintTree();
     void AppendTree(Tree t);
   protected : 
     Tree * Trees_;
