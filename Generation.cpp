@@ -51,6 +51,20 @@ void Generation::AppendTree(Tree t){
 }
 
 Generation Generation::Evolve(int n,int x,int y,int record){
+	Generation* g = new Generation(n);
+	std::string bestOfEachEvolution;
+	for(int i = 0; i<n; ++i){
+	  for (int j=0; j < nbr_trees_;++j){
+	    g->AppendTree(Trees_[j].Mutation());
+	  }
+	  if (record){
+	    g->GetBestFormula();
+	  }
+		/*for(const auto& obj : Trees_){
+      AppendTree(obj.mutation());
+		
+		} */
+	}
   /*if(!record){
     for(int i = 0, i<n, ++i){
       for(const auto& obj : Trees_){
