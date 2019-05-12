@@ -52,7 +52,8 @@ void Generation::AppendTree(Tree t){
 }
 
 Generation Generation::Evolve(int n,int x,int y,int record){
-	Generation* g = new Generation(n);
+  int numberoftrees=n*size_;
+	Generation* g = new Generation(numberoftrees);
 	std::string bestOfEachEvolution;
 	for(int i = 0; i<n; ++i){
 	  for (int j=0; j < nbr_trees_;++j){
@@ -81,5 +82,5 @@ Generation Generation::Evolve(int n,int x,int y,int record){
       }
     }*/
     
-  return* this;
+  return* g;
 }
