@@ -44,9 +44,9 @@ Tree Generation::GetBestFormula() const{
 }
 
 void Generation::AppendTree(Tree t){
-	if(size_>nbr_trees_) {
-		size_++;
-		Trees_[size_]=t;		
+	if(nbr_trees_<size_) {
+		Trees_[nbr_trees_]=t;	
+		nbr_trees_++;
 	}
 }
 
