@@ -31,9 +31,10 @@ class Tree{
 	Node* head();
     std::vector<Node*> Nodes();
 
-  std::vector<std::string> Formula(Node* x);
+  std::string Formula(Node* x);
   int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
   float CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
+ 
     
   protected : 
     

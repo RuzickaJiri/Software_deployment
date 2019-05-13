@@ -171,22 +171,22 @@ void Tree::CopyTree(Node* x, Node* new_x){
   }
 }
 
-/*
-std::vector<std::string> Tree::Formula(Node* x){
+
+std::string Tree::Formula(Node* x){
   
-  std::vector<std::string> s;
+  std::string s;
   if (x != nullptr){
     if (x->WhatAmI() == "Leaf"){
-      //s.push_back(std::to_string(x->value()));
-      s.push_back("x->WhatAmI()");
+      s+=(x->value());
+      
     } else {
       Formula(x->next());
-      s.push_back(x->oper()->operation());
+      s+=x->oper()->operation();
       Formula(x->second_next());
     }
   }
   return s;
- }*/
+ }
 
 int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   

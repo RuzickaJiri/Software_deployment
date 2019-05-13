@@ -11,7 +11,7 @@ class Generation{
     ~Generation();
 
     Tree GetBestIndividual( bool x[], std::vector<std::string> xlabels, int y) const;
-    std::string GetBestFormula() const;
+    std::string GetBestFormula(bool x[], std::vector<std::string> xlabels, int y) const;
 
     
     void PrintTree(int a);
