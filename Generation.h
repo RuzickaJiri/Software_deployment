@@ -10,16 +10,18 @@ class Generation{
     Generation();
     ~Generation();
 
-    Tree GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const;
+    Tree GetBestIndividual( bool x[], std::vector<std::string> xlabels, int y) const;
     std::string GetBestFormula() const;
 
     
     void PrintTree(int a);
 
+    //Generation Evolve(int n,int x,int y,int record) const;//std::vector<std::string> xlabels
     Generation Evolve(int n,int x,int y,int record);
     void PrintTree();
     void AppendTree(Tree t);
     void set_nbr_trees(size_t a);
+
 
 
   protected : 

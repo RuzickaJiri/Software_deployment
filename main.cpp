@@ -113,8 +113,8 @@ int main() {
   g.PrintTree();
   
   std::cout<< "Print generation2 :" <<std::endl;
-  Generation g2=g.Evolve(5,5,5,true);
-  g2.PrintTree();
+  //Generation g2=g.Evolve(5,5,5,true);
+  //g2.PrintTree();
 
 
 
