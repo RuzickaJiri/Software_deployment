@@ -90,8 +90,12 @@ int main() {
   std::cout<< "Test PrintTree" <<std::endl;
   t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
-
-
+  
+  for(int i = 0; i<8; ++i){
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.Mutation() ;
+  t2.PrintTree(t2.head()) ;
+  }
 
 
 
