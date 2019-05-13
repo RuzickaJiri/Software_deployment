@@ -112,12 +112,19 @@ int main() {
   std::cout<< "Print generation :" <<std::endl; 
   g.PrintTree();
   
+
+std::vector<std::string> xlabels={"x1","x2"};
+bool x[]={true,true};
+std::string* bestIndividual_=new std::string[10];
+Generation g2=g.Evolve(10,x,0,true,xlabels,bestIndividual_);
+
+
   std::cout<< "Print generation2 :" <<std::endl;
- // Generation g2=g.Evolve(5,5,5,true);
-  //g2.PrintTree();
-
-
-
+ 
+  g2.PrintTree();
+  for (size_t i=0; i<10;i++){
+    std::cout<<i<<" "<<bestIndividual_[i]<<std::endl;
+  }
 
 
 

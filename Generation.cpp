@@ -86,20 +86,19 @@ void Generation::AppendTree(Tree t){
 }
 
 Generation Generation::Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels, std::string* bestIndividual_ ){
- 	Generation* g = new Generation(size_, false);
-	
-
+ /*bestIndividual_ must be in stack and of size n*/
+	Generation* g = new Generation(size_, false);
+	if (!record){
+		bestIndividual_[0]="Record is false";	
+	}
 	for(int i = 0; i<n; ++i){
           g->set_nbr_trees(0);
-	  for (unsigned int j=0; j < nbr_trees_;++j){
+	  for (size_t j=0; j < nbr_trees_;++j){
 	    g->AppendTree(Trees_[j].Mutation());
 	  }
-	  if (record){
-	    
+	  if (record){	    
 	    bestIndividual_[i]=g->GetBestFormula(x,xlabels,y);  
-            
-	  }
-	
+          }
 	}
 
   return* g;
