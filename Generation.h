@@ -28,6 +28,6 @@ class Generation{
     Tree * Trees_;
     size_t nbr_trees_;
     size_t size_;
-    std::string* bestformula_;
+
 };
 #endif

@@ -5,8 +5,7 @@ Generation::Generation(size_t size, bool add){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
-  bestformula_= new std::string[1];
-  bestformula_[0] = "You have not asked to save history";
+
 
   if (add){
     for (size_t i=0; i <size_;++i){
