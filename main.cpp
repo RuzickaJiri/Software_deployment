@@ -30,7 +30,7 @@ int main() {
 
 
   //Generation Test
-  Generation* g = new Generation(4);
+  //Generation* g = new Generation(4);
 
   //Tree Test
   std::cout<< "Test Tree" <<std::endl;
@@ -51,7 +51,7 @@ int main() {
 
   std::cout<< "Test PrintTree3" <<std::endl;
   t1.PrintTree(t1.head()) ;
- 
+ /*
   t1.replace(&l2,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
 
@@ -76,7 +76,7 @@ int main() {
 
   std::cout<< "Test PrintTree5" <<std::endl;
   t1.PrintTree(t1.head()) ;
-  
+  */
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
@@ -91,6 +91,7 @@ int main() {
   t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
   
+
   for(int i = 0; i<8; ++i){
   std::cout<< "Test PrintTree" <<std::endl;
   t2.Mutation() ;
@@ -98,6 +99,21 @@ int main() {
   }
 
 
+  std::cout<< "AppendTree" <<std::endl;
+  t1.PrintTree(t1.head());
+  Generation g(3);
+  g.AppendTree(t1);
+  g.AppendTree(t2);
+  g.AppendTree(t2);
+  g.AppendTree(t2);
+  g.AppendTree(t2);
+  Generation g2=g.Evolve(5,5,5,true);
+  
+  std::cout<< "Print generation :" <<std::endl; 
+  g.PrintTree();
+  
+  std::cout<< "Print generation2 :" <<std::endl;
+  g2.PrintTree();
 
 
 
@@ -121,8 +137,7 @@ int main() {
 
 
 
-
-  delete g ;
+  
   return 0 ;
 }
 
