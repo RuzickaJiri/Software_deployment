@@ -13,7 +13,7 @@ class Generation{
     Tree GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const;
     Tree GetBestFormula() const;
 
-    Generation* Evolve(int n,int x,int y,int record);
+    
     void PrintTree(int a);
 
     Generation Evolve(int n,int x,int y,int record);

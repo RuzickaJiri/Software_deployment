@@ -56,7 +56,7 @@ Tree Generation::GetBestFormula() const{
     return Trees_[0];
 }
 
-Generation* Generation::Evolve(int n,int x,int y,int record){
+
 
 
 void Generation::AppendTree(Tree t){
@@ -100,7 +100,7 @@ Generation Generation::Evolve(int n,int x,int y,int record){
     }*/
     
 
-  return this;
+  return *this;
 
   return* g;
 
