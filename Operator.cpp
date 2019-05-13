@@ -13,7 +13,15 @@ Operator::Operator(){
 
   oper_ =  new Operation() ;
   second_next_ = nullptr ; //initialization of the next node on the null pointer
-} 
+}
+
+Operator::Operator(Operation *op){
+  next_ = nullptr ; //initialization of the next node on the null pointer
+  previous_ = nullptr ; //initialization of the previous node on the null pointer
+  
+  oper_ = op ;
+  second_next_ = nullptr ; //initialization of the next node on the null pointer
+}
 
 //Destructor
 Operator::~Operator(){
