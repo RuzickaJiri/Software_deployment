@@ -92,6 +92,13 @@ int main() {
   t2.Mutation() ;
   
 
+  for(int i = 0; i<8; ++i){
+  std::cout<< "Test PrintTree" <<std::endl;
+  t2.Mutation() ;
+  t2.PrintTree(t2.head()) ;
+  }
+
+
   std::cout<< "AppendTree" <<std::endl;
   t1.PrintTree(t1.head());
   Generation g(3, true);
@@ -108,6 +115,7 @@ int main() {
   std::cout<< "Print generation2 :" <<std::endl;
   Generation g2=g.Evolve(5,5,5,true);
   g2.PrintTree();
+
 
 
 

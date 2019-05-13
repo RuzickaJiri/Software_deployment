@@ -24,6 +24,7 @@ class Tree{
     
 
     void PrintTree(Node* x);
+    void CopyTree(Node* x, Node* new_x);
 
     
     float fitness();
@@ -32,7 +33,7 @@ class Tree{
 
   std::vector<std::string> Formula(Node* x);
   int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
-  int CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
+  float CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
     
   protected : 
     

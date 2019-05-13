@@ -22,6 +22,7 @@ public:
   std::string print() const override;
   //Constructors
   Operator() ;
+  Operator(Operation *op);
 
   //Destructor
   ~Operator();

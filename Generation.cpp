@@ -46,12 +46,27 @@ Generation::~Generation(){
   delete[] Trees_ ;
 }
 
-Tree Generation::GetBestIndividual() const{
-    return Trees_[0];
+Tree Generation::GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const{
+    float fit = Trees_[0].CalcFitness( n, x,xlabels,  y);
+    Tree best_tree = Trees_[0]; 
+    /*for(const Tree obj : Trees_){
+      if(obj.CalcFitness( n,  x,  xlabels,  y)<=fit){
+        fit = obj.CalcFitness( n, x,  xlabels,  y);
+        best_tree = obj;
+      }
+    }*/
+    return best_tree;
 }
+      
+    
+
+
 Tree Generation::GetBestFormula() const{
     return Trees_[0];
 }
+
+
+
 
 void Generation::AppendTree(Tree t){
 	if(nbr_trees_<size_) {
@@ -76,11 +91,13 @@ Generation Generation::Evolve(int n,int x,int y,int record){
 		
 		} */
 	}
+
   /*if(!record){
     for(int i = 0, i<n, ++i){
       for(const auto& obj : Trees_){
         obj = obj.Mutation;
       }
+      best_ind = 
     }
   }
   else{
@@ -91,5 +108,9 @@ Generation Generation::Evolve(int n,int x,int y,int record){
       }
     }*/
     
+
+  return *this;
+
   return* g;
+
 }

@@ -17,7 +17,8 @@ Tree::Tree(){
 Tree::Tree(const Tree& tr){
   fitness_ = tr.fitness_ ;
   head_ = tr.head_ ;
-  Nodes_ =tr.Nodes_;
+  Nodes_ = tr.Nodes_;
+  this->CopyTree(tr.head_, head_);
 }
 
 Tree::~Tree(){
@@ -50,39 +51,7 @@ Tree Tree::Mutation() {
   }
   
 
-  /*
-  Operator* op = new Operator() ;
-  Leaf* leaf = new Leaf() ;
-  Node* new_node;
-  int position = std::rand()%Nodes_.size() ;
-
-  int r = std::rand() %2;
-  switch(r) {
-    case 0 :
-    {
-        new_node = op ;
-        if (head_->WhatAmI() == "Leaf") {
-          head_ = new_node ;
-        }
-        break;  
-    }
-    case 1 :
-    {
-      new_node=leaf;
-      break;
-    }
-  }
-  switch(r) {
-    case 0 :
-      this->replace(new_node, position) ;
-      break;
-    case 1 :
-      this->append(new_node, position);
-      break;
-  }
-  */
-  //delete op ;
-  //delete leaf ;
+  
   return *newTree ;
 }
 
@@ -114,15 +83,7 @@ void Tree::append(Node* new_node, int position){
   
   Nodes_.push_back(new_node) ;
   
-  /*
-  Node* head = Nodes_.at(position);
-  Nodes_.at(position)=new_node;
-  head->previous()->set_next(new_node);
-  new_node->set_next(head_);
-  new_node->set_previous(head->previous());
-  
-  head->set_previous(new_node) ;
-   */
+
 }
 
 
@@ -173,6 +134,39 @@ void Tree::PrintTree(Node* x){
     }
   }
 }
+
+void Tree::CopyTree(Node* x, Node* new_x){
+  
+  if (x != nullptr){
+    if (x->WhatAmI() == "Operator"){
+      if (x->next()->WhatAmI() == "Leaf"){
+        Leaf* temp = new Leaf(x->next()->value());
+        new_x->set_next(temp);
+        temp->set_previous(new_x);
+      } else {
+        Operator* temp = new Operator(x->next()->oper());
+        new_x->set_next(temp);
+        temp->set_previous(new_x);
+      }
+      
+      CopyTree(x->next(), new_x->next());
+      if (x->oper()->binary()) {
+        if (x->second_next()->WhatAmI() == "Leaf"){
+          Leaf* temp = new Leaf(x->second_next()->value());
+          new_x->set_second_next(temp);
+          temp->set_previous(new_x);
+        } else {
+          Operator* temp = new Operator(x->second_next()->oper());
+          new_x->set_second_next(temp);
+          temp->set_previous(new_x);
+        }
+        
+        CopyTree(x->second_next(), new_x->second_next());
+      }
+    }
+  }
+}
+
 /*
 std::vector<std::string> Tree::Formula(Node* x){
   
@@ -215,7 +209,7 @@ int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   }
 }
 
-int Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
+float Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
   return CalcFormula(n,x,xlabels) - y;
 }
 
