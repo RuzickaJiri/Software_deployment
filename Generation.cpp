@@ -5,6 +5,9 @@ Generation::Generation(size_t size, bool add){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
+  bestformula_= new std::string[1];
+  bestformula_[0] = "You have not asked to save history";
+
   if (add){
     for (int i=0; i <size_;++i){
       Tree* t=new Tree();
@@ -46,6 +49,12 @@ Generation::~Generation(){
   delete[] Trees_ ;
 }
 
+void Generation::set_nbr_trees(size_t a){
+ nbr_trees_=a;
+}
+
+
+
 Tree Generation::GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const{
     float fit = Trees_[0].CalcFitness( n, x,xlabels,  y);
     Tree best_tree = Trees_[0]; 
@@ -61,8 +70,8 @@ Tree Generation::GetBestIndividual(Node* n, bool x[], std::vector<std::string> x
     
 
 
-Tree Generation::GetBestFormula() const{
-    return Trees_[0];
+std::string Generation::GetBestFormula() const{
+    return "best ;)";//bestformula_[0];
 }
 
 
@@ -76,15 +85,21 @@ void Generation::AppendTree(Tree t){
 }
 
 Generation Generation::Evolve(int n,int x,int y,int record){
-  int numberoftrees=n*size_;
-	Generation* g = new Generation(numberoftrees, false);
+	int nbr_formulas_=0;
+ 	Generation* g = new Generation(size_, false);
 	std::string bestOfEachEvolution;
+	if(record){
+          //delete (g->bestformula_);
+	  g->bestformula_=new std::string[n];
+	}
 	for(int i = 0; i<n; ++i){
+          g->set_nbr_trees(0);
 	  for (int j=0; j < nbr_trees_;++j){
 	    g->AppendTree(Trees_[j].Mutation());
 	  }
 	  if (record){
-	    g->GetBestFormula();
+	    g->bestformula_[nbr_formulas_]=g->GetBestFormula();
+            ++nbr_formulas_;
 	  }
 		/*for(const auto& obj : Trees_){
       AppendTree(obj.mutation());
