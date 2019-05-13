@@ -6,7 +6,7 @@
 
 class Generation{
   public : 
-    Generation(size_t nbr_trees_);
+    Generation(size_t nbr_trees_,bool);
     Generation();
     ~Generation();
 

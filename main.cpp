@@ -94,18 +94,19 @@ int main() {
 
   std::cout<< "AppendTree" <<std::endl;
   t1.PrintTree(t1.head());
-  Generation g(3);
+  Generation g(3, true);
   g.AppendTree(t1);
   g.AppendTree(t2);
   g.AppendTree(t2);
   g.AppendTree(t2);
   g.AppendTree(t2);
-  Generation g2=g.Evolve(5,5,5,true);
+  //Generation g2=g.Evolve(5,5,5,true);
   
   std::cout<< "Print generation :" <<std::endl; 
   g.PrintTree();
   
   std::cout<< "Print generation2 :" <<std::endl;
+  Generation g2=g.Evolve(5,5,5,true);
   g2.PrintTree();
 
 

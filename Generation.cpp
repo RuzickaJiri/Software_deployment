@@ -1,11 +1,20 @@
 #include <iostream>
 #include "Generation.h"
 
-Generation::Generation(size_t size){
+Generation::Generation(size_t size, bool add){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
+  if (add){
+    for (int i=0; i <size_;++i){
+      Tree* t=new Tree();
+      Trees_[nbr_trees_]=*t;
+      ++nbr_trees_;
+    }
   }
+}
+
+
 
 Generation::Generation(){
  nbr_trees_=1;
@@ -53,7 +62,7 @@ void Generation::AppendTree(Tree t){
 
 Generation Generation::Evolve(int n,int x,int y,int record){
   int numberoftrees=n*size_;
-	Generation* g = new Generation(numberoftrees);
+	Generation* g = new Generation(numberoftrees, false);
 	std::string bestOfEachEvolution;
 	for(int i = 0; i<n; ++i){
 	  for (int j=0; j < nbr_trees_;++j){
