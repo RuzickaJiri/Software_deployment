@@ -18,7 +18,13 @@ Leaf::Leaf(){
       value_ = "x2"; //variable
       break;
   }
-} 
+}
+
+Leaf::Leaf(std::string s){
+  next_ = nullptr ; //initialization of the next node on the null pointer
+  previous_ = nullptr ; //initialization of the previous node on the null pointer
+  value_ = s;
+}
 
 //Destructor
 Leaf::~Leaf(){
