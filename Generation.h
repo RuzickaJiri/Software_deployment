@@ -17,7 +17,7 @@ class Generation{
     void PrintTree(int a);
 
     //Generation Evolve(int n,int x,int y,int record) const;//std::vector<std::string> xlabels
-    Generation Evolve(int n,int x,int y,int record);
+    Generation Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels,std::string* bestIndividual_ );
     void PrintTree();
     void AppendTree(Tree t);
     void set_nbr_trees(size_t a);

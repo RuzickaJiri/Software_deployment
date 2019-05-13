@@ -85,7 +85,7 @@ void Generation::AppendTree(Tree t){
 	}
 }
 
-Generation Generation::Evolve(int n,int x,int y,int record){
+Generation Generation::Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels, std::string* bestIndividual_ ){
 	int nbr_formulas_=0;
  	Generation* g = new Generation(size_, false);
 	std::string bestOfEachEvolution;
