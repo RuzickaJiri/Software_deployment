@@ -16,7 +16,11 @@ Tree::Tree(){
 
 Tree::Tree(const Tree& tr){
   fitness_ = tr.fitness_ ;
-  head_ = tr.head_ ;
+  if (tr.head_->WhatAmI() == "Leaf"){
+    head_ = new Leaf(tr.head_->value()) ;
+  } else {
+    head_ = new Operator(tr.head_->oper()) ;
+  }
   Nodes_ = tr.Nodes_;
   this->CopyTree(tr.head_, head_);
 }
