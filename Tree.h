@@ -24,6 +24,7 @@ class Tree{
     
 
     void PrintTree(Node* x);
+    void CopyTree(Node* x, Node* new_x);
 
     
     float fitness();

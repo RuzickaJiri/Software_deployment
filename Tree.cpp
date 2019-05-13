@@ -17,7 +17,8 @@ Tree::Tree(){
 Tree::Tree(const Tree& tr){
   fitness_ = tr.fitness_ ;
   head_ = tr.head_ ;
-  std::vector<Node*> Nodes_ ;
+  Nodes_ = tr.Nodes_;
+  this->CopyTree(tr.head_, head_);
 }
 
 Tree::~Tree(){
@@ -174,6 +175,39 @@ void Tree::PrintTree(Node* x){
     }
   }
 }
+
+void Tree::CopyTree(Node* x, Node* new_x){
+  
+  if (x != nullptr){
+    if (x->WhatAmI() == "Operator"){
+      if (x->next()->WhatAmI() == "Leaf"){
+        Leaf* temp = new Leaf(x->next()->value());
+        new_x->set_next(temp);
+        temp->set_previous(new_x);
+      } else {
+        Operator* temp = new Operator(x->next()->oper());
+        new_x->set_next(temp);
+        temp->set_previous(new_x);
+      }
+      
+      CopyTree(x->next(), new_x->next());
+      if (x->oper()->binary()) {
+        if (x->second_next()->WhatAmI() == "Leaf"){
+          Leaf* temp = new Leaf(x->second_next()->value());
+          new_x->set_second_next(temp);
+          temp->set_previous(new_x);
+        } else {
+          Operator* temp = new Operator(x->second_next()->oper());
+          new_x->set_second_next(temp);
+          temp->set_previous(new_x);
+        }
+        
+        CopyTree(x->second_next(), new_x->second_next());
+      }
+    }
+  }
+}
+
 /*
 std::vector<std::string> Tree::Formula(Node* x){
   
