@@ -36,56 +36,23 @@ std::vector<Node*> Tree::Nodes(){
 }
 
 Tree Tree::Mutation() {
-
-
+  Tree* newTree = new Tree(*this);
   int position = std::rand()%Nodes_.size() ;
   int r = std::rand() %4;
   if (r > 2) {
 	Operator* new_node = new Operator() ;
-	this->append(new_node, position);
+	newTree->append(new_node, position);
 	} else if (r==1){
 	  Operator* new_node = new Operator() ;
-      this->replace(new_node, position) ;
+      newTree->replace(new_node, position) ;
 	} else {
       Leaf* new_node = new Leaf() ;
-      this->replace(new_node, position) ;
+      newTree->replace(new_node, position) ;
   }
   
 
-  /*
-  Operator* op = new Operator() ;
-  Leaf* leaf = new Leaf() ;
-  Node* new_node;
-  int position = std::rand()%Nodes_.size() ;
-
-  int r = std::rand() %2;
-  switch(r) {
-    case 0 :
-    {
-        new_node = op ;
-        if (head_->WhatAmI() == "Leaf") {
-          head_ = new_node ;
-        }
-        break;  
-    }
-    case 1 :
-    {
-      new_node=leaf;
-      break;
-    }
-  }
-  switch(r) {
-    case 0 :
-      this->replace(new_node, position) ;
-      break;
-    case 1 :
-      this->append(new_node, position);
-      break;
-  }
-  */
-  //delete op ;
-  //delete leaf ;
-  return *this ;
+  
+  return *newTree ;
 }
 
 void Tree::append(Node* new_node, int position){
@@ -116,15 +83,7 @@ void Tree::append(Node* new_node, int position){
   
   Nodes_.push_back(new_node) ;
   
-  /*
-  Node* head = Nodes_.at(position);
-  Nodes_.at(position)=new_node;
-  head->previous()->set_next(new_node);
-  new_node->set_next(head_);
-  new_node->set_previous(head->previous());
-  
-  head->set_previous(new_node) ;
-   */
+
 }
 
 
@@ -250,7 +209,7 @@ int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   }
 }
 
-int Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
+float Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
   return CalcFormula(n,x,xlabels) - y;
 }
 
