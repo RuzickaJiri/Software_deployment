@@ -128,19 +128,9 @@ void Tree::replace(Node* new_node, int position) {
   }
 }
 
-void Tree::PrintTree(Node* x){
+void Tree::PrintTree(){
   
-  if (x != nullptr){
-    if (x->WhatAmI() == "Leaf"){
-      std::cout<< x->print() <<std::endl;
-    } else {
-      std::cout<< x->print() <<std::endl;
-      PrintTree(x->next());
-      if (x->oper()->binary()) {
-        PrintTree(x->second_next());
-      }
-    }
-  }
+  std::cout<< Formula(head_) <<std::endl;
 }
 
 void Tree::CopyTree(Node* x, Node* new_x){
@@ -178,19 +168,21 @@ void Tree::CopyTree(Node* x, Node* new_x){
 
 std::string Tree::Formula(Node* x){
   
-  std::string s;
   if (x != nullptr){
     if (x->WhatAmI() == "Leaf"){
-      s+=(x->value());
-      
-    } else {
-      Formula(x->next());
-      s+=x->oper()->operation();
-      Formula(x->second_next());
+      return x->value();
+    }
+    else {
+      if (x->oper()->binary()) {
+        return "("+ Formula(x->next()) +" "+ x->oper()->operation()
+        +" "+ Formula(x->second_next()) + ")";
+      }
+      else {
+        return "("+ x->oper()->operation()+" "+ Formula(x->next())+")";
+      }
     }
   }
-  return s;
- }
+}
 
 int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   

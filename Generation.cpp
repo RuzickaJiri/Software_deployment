@@ -40,7 +40,7 @@ Generation::Generation(){
 void Generation::PrintTree(){
   for(size_t a=0 ; a< nbr_trees_;a++){
       std::cout<<"Tree : "<<a+1<<std::endl;
-      Trees_[a].PrintTree(Trees_[a].head());
+      Trees_[a].PrintTree();
   }
 }
 

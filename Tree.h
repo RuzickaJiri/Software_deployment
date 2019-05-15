@@ -23,7 +23,7 @@ class Tree{
 
     
 
-    void PrintTree(Node* x);
+    void PrintTree();
     void CopyTree(Node* x, Node* new_x);
 
     
