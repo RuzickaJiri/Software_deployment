@@ -74,9 +74,10 @@ void Tree::append(Node* new_node, int position){
   new_node->set_next(node_to_replace) ;
   node_to_replace->set_previous(new_node);
   if (new_node->WhatAmI() == "Operator") {
-	if (new_node->oper()->binary()) {
+    if (new_node->oper()->binary()) {
       Leaf* new_second_leaf = new Leaf() ;
       new_node->set_second_next(new_second_leaf) ;
+      new_second_leaf->set_previous(new_node);
       //delete new_second_leaf ;
       Nodes_.push_back(new_second_leaf) ;
     }
@@ -106,12 +107,15 @@ void Tree::replace(Node* new_node, int position) {
   if (new_node->WhatAmI() == "Operator") {
     if (node_to_replace->WhatAmI() == "Operator") {
       new_node->set_next(node_to_replace->next()) ;
+      node_to_replace->next()->set_previous(new_node);
       if (new_node->oper()->binary() == true) {
         if (node_to_replace->oper()->binary() == true) {
           new_node->set_second_next(node_to_replace->second_next()) ;
+          node_to_replace->second_next()->set_previous(new_node);
         } else {
           Leaf* new_second_leaf = new Leaf() ;
           new_node->set_second_next(new_second_leaf) ;
+          new_second_leaf->set_previous(new_node);
           Nodes_.push_back(new_second_leaf) ;
         }
       }
