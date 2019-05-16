@@ -184,6 +184,19 @@ std::string Tree::Formula(Node* x){
   }
 }
 
+int Tree::FindSize(Node* x) const{
+  
+  if (x == nullptr) {
+    return 0 ;
+  } else {
+    if (x->WhatAmI() == "Operator" && x->oper()->binary()){
+      return FindSize(x->next()) + 1 + FindSize(x->second_next());
+    } else {
+      return FindSize(x->next()) + 1 ;
+    }
+  }
+}
+
 int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   
   int size = xlabels.size();
