@@ -197,6 +197,28 @@ int Tree::FindSize(Node* x) const{
   }
 }
 
+Node* Tree::SearchInTree(Node* x, int position) const{
+  
+  if (position == 0) {
+    return x ;
+  } else {
+    if (x->WhatAmI() == "Operator"){
+      if (x->oper()->binary()) {
+        if (position > FindSize(x->next())){
+          return SearchInTree(x->second_next(), position - FindSize(x->next()) -1);
+        }
+        else {
+          return SearchInTree(x->next(), position - 1);
+        }
+        
+      } else {
+        return SearchInTree(x->next(), position - 1);
+      }
+    }
+  }
+}
+
+
 int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   
   int size = xlabels.size();

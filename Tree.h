@@ -26,7 +26,8 @@ class Tree{
     void PrintTree();
     void CopyTree(Node* x, Node* new_x);
 
-  int FindSize(Node* x) const;
+    int FindSize(Node* x) const;
+    Node* SearchInTree(Node* x, int position) const;
     float fitness();
     Node* head();
     std::vector<Node*> Nodes();
