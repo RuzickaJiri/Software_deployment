@@ -6,7 +6,6 @@
 #include<iostream>
 #include<vector>
 #include"Operator.h"
-#include <cmath>
 
 Tree::Tree(){
    fitness_ = 0;
@@ -37,29 +36,27 @@ Tree::~Tree(){
 Node* Tree::head(){
   return head_;
 }
-
 /*
 std::vector<Node*> Tree::Nodes(){
   return Nodes_;
-}
-*/
+}*/
 
-Tree* Tree::Mutation() {
-  Tree* newTree = new Tree(*this);
+Tree Tree::Mutation() {
+  Tree newTree(*this);
   //int position = std::rand()%Nodes_.size() ;
   int position = std::rand()%size_ ;
   int r = std::rand() %4;
-  if (r > 2) {
-	Operator* new_node = new Operator() ;
-	newTree->append(new_node, position);
+  if (r >= 2) {
+	  Operator* new_node = new Operator() ;
+	  newTree.append(new_node, position);
 	} else if (r==1){
 	  Operator* new_node = new Operator() ;
-      newTree->replace(new_node, position) ;
+    newTree.replace(new_node, position) ;
 	} else {
-      Leaf* new_node = new Leaf() ;
-      newTree->replace(new_node, position) ;
+    Leaf* new_node = new Leaf() ;
+    newTree.replace(new_node, position) ;
   }
-  ++ size_;
+  
 
   
   return newTree ;
@@ -74,18 +71,17 @@ void Tree::append(Node* new_node, int position){
     if (node_to_replace == node_to_replace->previous()->next()) {//if first next
       node_to_replace->previous()->set_next(new_node) ;
     } else {//second next
-      Operator* prev = ((Operator*) node_to_replace->previous()) ;
-      prev->set_second_next(new_node) ;
-      //node_to_replace->previous()->set_second_next(new_node) ;
+      node_to_replace->previous()->set_second_next(new_node) ;
     }
   }
   
   new_node->set_next(node_to_replace) ;
   node_to_replace->set_previous(new_node);
   if (new_node->WhatAmI() == "Operator") {
-	if (new_node->oper()->binary()) {
+    if (new_node->oper()->binary()) {
       Leaf* new_second_leaf = new Leaf() ;
       new_node->set_second_next(new_second_leaf) ;
+      new_second_leaf->set_previous(new_node);
       //delete new_second_leaf ;
       //Nodes_.push_back(new_second_leaf) ;
       ++size_ ;
@@ -105,9 +101,7 @@ void Tree::append(Node* new_node, int position){
 void Tree::replace(Node* new_node, int position) {
   
   //Node* node_to_replace = Nodes_.at(position) ;
-  
   Node* node_to_replace = SearchInTree(head_, position) ;
-  
   size_ -= FindSize(node_to_replace) ;
   
   if (node_to_replace->previous() != nullptr) {
@@ -119,19 +113,33 @@ void Tree::replace(Node* new_node, int position) {
     }
   }
   
-  
   if (new_node->WhatAmI() == "Operator") {
     if (node_to_replace->WhatAmI() == "Operator") {
       new_node->set_next(node_to_replace->next()) ;
+      node_to_replace->next()->set_previous(new_node);
       if (new_node->oper()->binary() == true) {
         if (node_to_replace->oper()->binary() == true) {
           new_node->set_second_next(node_to_replace->second_next()) ;
+          node_to_replace->second_next()->set_previous(new_node);
         } else {
           Leaf* new_second_leaf = new Leaf() ;
           new_node->set_second_next(new_second_leaf) ;
+          new_second_leaf->set_previous(new_node);
           //Nodes_.push_back(new_second_leaf) ;
           ++size_ ;
         }
+      }
+    } else {
+      Leaf* new_leaf = new Leaf() ;
+      new_node->set_next(new_leaf) ;
+      new_leaf->set_previous(new_node);
+      ++size_;
+      if (new_node->oper()->binary() == true) {
+        Leaf* new_second_leaf = new Leaf() ;
+        new_node->set_second_next(new_second_leaf) ;
+        new_second_leaf->set_previous(new_node);
+        //Nodes_.push_back(new_second_leaf) ;
+        ++size_ ;
       }
     }
   }  
@@ -141,27 +149,16 @@ void Tree::replace(Node* new_node, int position) {
     head_ = new_node ;
   }
   ++size_ ;
-  
 }
 
-void Tree::PrintTree(Node* x){
+void Tree::PrintTree(){
   
-  if (x != nullptr){
-    if (x->WhatAmI() == "Leaf"){
-      std::cout<< x->print() <<std::endl;
-    } else {
-      std::cout<< x->print() <<std::endl;
-      PrintTree(x->next());
-      if (x->oper()->binary()) {
-        PrintTree(x->second_next());
-      }
-    }
-  }
+  std::cout<< Formula(head_) <<std::endl;
 }
 
 void Tree::CopyTree(Node* x, Node* new_x){
   
-  if (x != nullptr){
+  if (x == nullptr){ return;}
     if (x->WhatAmI() == "Operator"){
       if (x->next()->WhatAmI() == "Leaf"){
         Leaf* temp = new Leaf(x->next()->value());
@@ -188,42 +185,31 @@ void Tree::CopyTree(Node* x, Node* new_x){
         CopyTree(x->second_next(), new_x->second_next());
       }
     }
-  }
+  
 }
 
-Node* Tree::SearchInTree(Node* x, int position) const{
 
-  if (position == 0) {
-        return x ;
-  } else {
-    if (x->WhatAmI() == "Operator"){
-      SearchInTree(x->next(), position - 1);
+std::string Tree::Formula(Node* x){
+  
+  if (x == nullptr){ return "";}
+    if (x->WhatAmI() == "Leaf"){
+      return x->value();
+    }
+    else {
       if (x->oper()->binary()) {
-        SearchInTree(x->second_next(), position - 1);
+        return "("+ Formula(x->next()) +" "+ x->oper()->operation()
+        +" "+ Formula(x->second_next()) + ")";
       }
-    }  
-   
-  }
-}
-
-/*
-int Tree::FindSize(Node* x, int length){
-
-  if (x != nullptr) {
-      length = FindSize(x->next(), length + 1);
-      if (x->WhatAmI() == "Operator" && x->oper()->binary()) {
-        length = FindSize(x->second_next(), length + 1);
+      else {
+        return "("+ x->oper()->operation()+" "+ Formula(x->next())+")";
       }
-    //} 
-  } else {
-      return length ;
-  }
+    }
+  
 }
-*/
 
 int Tree::FindSize(Node* x) const{
-
-  if (x != nullptr) {
+  
+  if (x == nullptr) {
     return 0 ;
   } else {
     if (x->WhatAmI() == "Operator" && x->oper()->binary()){
@@ -234,22 +220,27 @@ int Tree::FindSize(Node* x) const{
   }
 }
 
-/*
-std::vector<std::string> Tree::Formula(Node* x){
+Node* Tree::SearchInTree(Node* x, int position) const{
   
-  std::vector<std::string> s;
-  if (x != nullptr){
-    if (x->WhatAmI() == "Leaf"){
-      //s.push_back(std::to_string(x->value()));
-      s.push_back("x->WhatAmI()");
-    } else {
-      Formula(x->next());
-      s.push_back(x->oper()->operation());
-      Formula(x->second_next());
+  if (position == 0) {
+    return x ;
+  } //else {
+    if (x->WhatAmI() == "Operator"){
+      if (x->oper()->binary()) {
+        if (position > FindSize(x->next())){
+          return SearchInTree(x->second_next(), position - FindSize(x->next()) -1);
+        }
+        else {
+          return SearchInTree(x->next(), position - 1);
+        }
+        
+      } else {
+        return SearchInTree(x->next(), position - 1);
+      }
     }
-  }
-  return s;
- }*/
+  //}
+}
+
 
 int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   
@@ -276,12 +267,8 @@ int Tree::CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels){
   }
 }
 
-float Tree::CalcFitness(Node* n, bool x[][1], std::vector<std::string> xlabels, int y[]){
-  float res=0;
-  for (int i=0; i<sizeof(x); i++){
-    res += abs(CalcFormula(n,x[i],xlabels) - y[i]);
-  }
-  return res ;
+float Tree::CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y){
+  return CalcFormula(n,x,xlabels) - y;
 }
 
 

@@ -38,19 +38,19 @@ int main() {
   Tree t2 ;
 
   std::cout<< "Test PrintTree1" <<std::endl;
-  t1.PrintTree(t1.head()) ;  
+  t1.PrintTree() ;
 
   t1.append(&op1,0) ;
   //std::cout<< t1.Nodes().size() <<std::endl;
   
   std::cout<< "Test PrintTree2" <<std::endl;
-  t1.PrintTree(t1.head()) ;
+  t1.PrintTree() ;
 
   t1.append(&op2,1) ;
   //std::cout<< t1.Nodes().size() <<std::endl;
 
   std::cout<< "Test PrintTree3" <<std::endl;
-  t1.PrintTree(t1.head()) ;
+  t1.PrintTree() ;
  /*
   t1.replace(&l2,2) ;
   std::cout<< t1.Nodes().size() <<std::endl;
@@ -80,62 +80,51 @@ int main() {
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.head()) ;
+  t2.PrintTree() ;
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.head()) ;
+  t2.PrintTree() ;
   t2.Mutation() ;
   std::cout<< "Test Mutation" <<std::endl;
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.PrintTree(t2.head()) ;
+  t2.PrintTree() ;
   t2.Mutation() ;
-    std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;
-    std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;
-    std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;
-    std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;  
+  
+  Tree t3;
+  for(int i = 0; i<8; ++i){
   std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;
-/*
-  for(int i = 0; i<10; ++i){
-  std::cout<< "Test PrintTree" <<std::endl;
-  t1.Mutation() ;
-  t1.PrintTree(t1.head()) ;
-  }*/
+  t3 = t3.Mutation();
+  t3.PrintTree();
+  }
 
 
   std::cout<< "AppendTree" <<std::endl;
-  t1.PrintTree(t1.head());
-  /*
-  Generation g(3);
+  t1.PrintTree();
+  Generation g(30, true);
   g.AppendTree(t1);
-  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
-  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
-  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
-  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
-  Generation g2=g.Evolve(5,5,5,true);
+  //Generation g2=g.Evolve(5,5,5,true);
   
   std::cout<< "Print generation :" <<std::endl; 
   g.PrintTree();
   
+
+std::vector<std::string> xlabels={"x1","x2"};
+bool x[]={true,true};
+std::string* bestIndividual_=new std::string[100];
+Generation g2=g.Evolve(10,x,0,true,xlabels,bestIndividual_);
+Generation g3=g2.Evolve(50,x,0,true,xlabels,bestIndividual_);
+
   std::cout<< "Print generation2 :" <<std::endl;
+ 
   g2.PrintTree();
-  */
-
-
+  for (size_t i=0; i<100;i++){
+    std::cout<<i<<" "<<bestIndividual_[i]<<std::endl;
+  }
 
 
 
