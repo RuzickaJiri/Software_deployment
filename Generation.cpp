@@ -5,9 +5,6 @@ Generation::Generation(size_t size){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
-
-
-
     for (size_t i=0; i <size_;++i){
       Tree* t=new Tree();
       Trees_[nbr_trees_]=*t;
@@ -40,7 +37,9 @@ Generation::Generation(){
 void Generation::PrintTree(){
   for(size_t a=0 ; a< nbr_trees_;a++){
       std::cout<<"Tree : "<<a+1<<std::endl;
+      std::cout<<"Entré jusqu'ici"<<std::endl;
       Trees_[a].PrintTree();
+      Trees_[a];
   }
 }
 

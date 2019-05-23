@@ -73,11 +73,13 @@ static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
 
 //Create the Python Object Generation
 static PyObject* CreateGeneration(PyObject* self, PyObject* args){
-	size_t nbr_trees;
+	int nbr_trees;
 	if (!PyArg_ParseTuple(args, "h", &nbr_trees)){
 		return NULL;
 	}
-	Generation* my_Generation = new Generation(nbr_trees);
+	std::cout<<nbr_trees<<std::endl;
+		Generation* my_Generation = new Generation((size_t)nbr_trees);
+	printf("dsgsdfgdsfh\n");
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
 	return capsule;
 
@@ -85,26 +87,14 @@ return NULL;
 
 }
 
-static PyObject* CreateGenerationOneTree(PyObject* self){
-	/*if (!PyArg_ParseTuple(args, "h", &nbr_trees)){
-		return NULL;
-	}*/
-	Generation* my_Generation = new Generation();
-	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION, GenerationCapsuleDestructor);
-	return capsule;
 
-return NULL;
-
-}
 
 
 
 // Module functions {<python function name>, <function in wrapper>, <parameters flag>, <doctring>}
 // https://docs.python.org/3/c-api/structures.html
 static PyMethodDef module_funcs[] = {
-    {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tnumber of equations in your generation (size_t): the parameter\n\nReturns:\n\t capsule: Object Generation capsule"},
-		
-    {"create_generation_one_tree", (PyCFunction)CreateGenerationOneTree, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
+    {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tnumber of equations in your generation (size_t): the parameter\n\nReturns:\n\t capsule: Object Generation capsule"},		
     {"printTree", (PyCFunction)PrintGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
 		{NULL, NULL, METH_NOARGS, NULL}
 };

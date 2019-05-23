@@ -101,7 +101,7 @@ int main() {
 
   std::cout<< "AppendTree" <<std::endl;
   t1.PrintTree();
-  Generation g(30, true);
+  Generation g(30);
   g.AppendTree(t1);
   g.AppendTree(t2);
   g.AppendTree(t2);
