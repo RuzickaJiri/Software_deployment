@@ -41,13 +41,13 @@ int main() {
   t1.PrintTree() ;
 
   t1.append(&op1,0) ;
-  std::cout<< t1.Nodes().size() <<std::endl;
+  //std::cout<< t1.Nodes().size() <<std::endl;
   
   std::cout<< "Test PrintTree2" <<std::endl;
   t1.PrintTree() ;
 
   t1.append(&op2,1) ;
-  std::cout<< t1.Nodes().size() <<std::endl;
+  //std::cout<< t1.Nodes().size() <<std::endl;
 
   std::cout<< "Test PrintTree3" <<std::endl;
   t1.PrintTree() ;
@@ -91,17 +91,17 @@ int main() {
   t2.PrintTree() ;
   t2.Mutation() ;
   
-
+  Tree t3;
   for(int i = 0; i<8; ++i){
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.Mutation() ;
-  t2.PrintTree() ;
+  t3 = t3.Mutation();
+  t3.PrintTree();
   }
 
 
   std::cout<< "AppendTree" <<std::endl;
   t1.PrintTree();
-  Generation g(3, true);
+  Generation g(30, true);
   g.AppendTree(t1);
   g.AppendTree(t2);
   g.AppendTree(t2);
@@ -115,14 +115,14 @@ int main() {
 
 std::vector<std::string> xlabels={"x1","x2"};
 bool x[]={true,true};
-std::string* bestIndividual_=new std::string[10];
+std::string* bestIndividual_=new std::string[100];
 Generation g2=g.Evolve(10,x,0,true,xlabels,bestIndividual_);
-
+Generation g3=g2.Evolve(50,x,0,true,xlabels,bestIndividual_);
 
   std::cout<< "Print generation2 :" <<std::endl;
  
   g2.PrintTree();
-  for (size_t i=0; i<10;i++){
+  for (size_t i=0; i<100;i++){
     std::cout<<i<<" "<<bestIndividual_[i]<<std::endl;
   }
 

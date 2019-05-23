@@ -30,7 +30,7 @@ class Tree{
     Node* SearchInTree(Node* x, int position) const;
     float fitness();
     Node* head();
-    std::vector<Node*> Nodes();
+    //std::vector<Node*> Nodes();
 
     std::string Formula(Node* x);
     int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
@@ -39,9 +39,10 @@ class Tree{
     
   protected : 
     
-    std::vector<Node*> Nodes_;
+    //std::vector<Node*> Nodes_;
     float fitness_;
     Node* head_;
+    int size_;
 };
 
 
