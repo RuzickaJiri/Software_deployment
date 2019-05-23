@@ -1,19 +1,19 @@
 #include <iostream>
 #include "Generation.h"
 
-Generation::Generation(size_t size, bool add){
+Generation::Generation(size_t size){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
 
 
-  if (add){
+
     for (size_t i=0; i <size_;++i){
       Tree* t=new Tree();
       Trees_[nbr_trees_]=*t;
       ++nbr_trees_;
     }
-  }
+  
 }
 
 
@@ -87,7 +87,7 @@ void Generation::AppendTree(Tree t){
 
 Generation Generation::Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels, std::string* bestIndividual_ ){
  /*bestIndividual_ must be in stack and of size n*/
-	Generation* g = new Generation(size_, false);
+	Generation* g = new Generation(size_);
 	if (!record){
 		bestIndividual_[0]="Record is false";	
 	}

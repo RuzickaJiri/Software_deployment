@@ -6,7 +6,7 @@
 
 class Generation{
   public : 
-    Generation(size_t nbr_trees_,bool);
+    Generation(size_t nbr_trees_);
     Generation();
     ~Generation();
 
@@ -14,7 +14,7 @@ class Generation{
     std::string GetBestFormula(bool x[], std::vector<std::string> xlabels, int y) const;
 
     
-    void PrintTree(int a);
+    
 
     //Generation Evolve(int n,int x,int y,int record) const;//std::vector<std::string> xlabels
     Generation Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels,std::string* bestIndividual_ );

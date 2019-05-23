@@ -17,7 +17,7 @@
 
 
 static Generation* GenerationPythonToC(PyObject* args){
-  Generation* my_Generation;
+  Generation* my_Generation ;
   PyObject* capsule;
   if (!PyArg_ParseTuple(args, "O", &capsule)){
 		return NULL;
@@ -29,8 +29,8 @@ static Generation* GenerationPythonToC(PyObject* args){
 // Frees object Generation Python capsule
 
 void GenerationCapsuleDestructor(PyObject* capsule){
-  Generation* my_Generation = (Generation*) PyCapsule_GetPointer(capsule,NAME_CAPSULE_GENERATION);
-  delete my_Generation;
+  //Generation* my_Generation = (Generation*) PyCapsule_GetPointer(capsule,NAME_CAPSULE_GENERATION);
+  //delete my_Generation;
 }
 
 /* Calls the Print function of object A
@@ -45,7 +45,7 @@ static PyObject*  PrintA(PyObject* self, PyObject* args){
 
 static PyObject*  PrintGeneration(PyObject* self, PyObject* args){
     Generation*  my_Generation = GenerationPythonToC(args);
-    my_Generation->PrintTree(0);
+    my_Generation->PrintTree();
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -73,12 +73,12 @@ static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
 
 //Create the Python Object Generation
 static PyObject* CreateGeneration(PyObject* self, PyObject* args){
-	int nbr_trees;
+	size_t nbr_trees;
 	if (!PyArg_ParseTuple(args, "h", &nbr_trees)){
 		return NULL;
 	}
 	Generation* my_Generation = new Generation(nbr_trees);
-	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION, GenerationCapsuleDestructor);
+	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
 	return capsule;
 
 return NULL;
