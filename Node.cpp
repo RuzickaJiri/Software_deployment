@@ -34,6 +34,7 @@ Node* Node::second_next() const {
 }
 
 void Node::set_second_next(Node* newval){
+  
 }
 
 std::string Node::value() const {

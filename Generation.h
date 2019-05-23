@@ -14,7 +14,7 @@ class Generation{
     std::string GetBestFormula(bool x[], int y) const;
 
     
-    void PrintTree(int a);
+    
 
     //Generation Evolve(int n,int x,int y,int record) const;//std::vector<std::string> xlabels
     Generation Evolve(int n, bool x[],int y,int record,std::string* bestIndividual_ );

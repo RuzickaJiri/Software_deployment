@@ -203,7 +203,7 @@ void Tree::CopyTree(Node* x, Node* new_x){
 
 std::string Tree::Formula(Node* x){
   
-  if (x == nullptr){ return "";}
+  if (x != nullptr){
     if (x->WhatAmI() == "Leaf"){
       return x->value();
     }
@@ -216,7 +216,7 @@ std::string Tree::Formula(Node* x){
         return "("+ x->oper()->operation()+" "+ Formula(x->next())+")";
       }
     }
-  
+  } return "";
 }
 
 int Tree::FindSize(Node* x) const{

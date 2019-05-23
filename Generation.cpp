@@ -8,13 +8,12 @@ Generation::Generation(size_t size, bool add,std::vector<std::string> xlabels){
   xlabels_=xlabels;
 
 
-  if (add){
-    for (size_t i=0; i <size_;++i){
+     for (size_t i=0; i <size_;++i){
       Tree* t=new Tree(xlabels);
       Trees_[nbr_trees_]=*t;
       ++nbr_trees_;
     }
-  }
+  
 }
 
 
