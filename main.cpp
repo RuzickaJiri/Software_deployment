@@ -41,13 +41,13 @@ int main() {
   t1.PrintTree(t1.head()) ;  
 
   t1.append(&op1,0) ;
-  std::cout<< t1.Nodes().size() <<std::endl;
+  //std::cout<< t1.Nodes().size() <<std::endl;
   
   std::cout<< "Test PrintTree2" <<std::endl;
   t1.PrintTree(t1.head()) ;
 
   t1.append(&op2,1) ;
-  std::cout<< t1.Nodes().size() <<std::endl;
+  //std::cout<< t1.Nodes().size() <<std::endl;
 
   std::cout<< "Test PrintTree3" <<std::endl;
   t1.PrintTree(t1.head()) ;
@@ -90,22 +90,41 @@ int main() {
   std::cout<< "Test PrintTree" <<std::endl;
   t2.PrintTree(t2.head()) ;
   t2.Mutation() ;
-  
-
-  for(int i = 0; i<8; ++i){
+    std::cout<< "Test PrintTree" <<std::endl;
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;
+    std::cout<< "Test PrintTree" <<std::endl;
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;
+    std::cout<< "Test PrintTree" <<std::endl;
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;
+    std::cout<< "Test PrintTree" <<std::endl;
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;  
   std::cout<< "Test PrintTree" <<std::endl;
-  t2.Mutation() ;
-  t2.PrintTree(t2.head()) ;
-  }
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;
+/*
+  for(int i = 0; i<10; ++i){
+  std::cout<< "Test PrintTree" <<std::endl;
+  t1.Mutation() ;
+  t1.PrintTree(t1.head()) ;
+  }*/
 
 
   std::cout<< "AppendTree" <<std::endl;
   t1.PrintTree(t1.head());
+  /*
   Generation g(3);
   g.AppendTree(t1);
+  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
+  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
+  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
+  std::cout<< "AppendTree" <<std::endl;
   g.AppendTree(t2);
   Generation g2=g.Evolve(5,5,5,true);
   
@@ -114,7 +133,7 @@ int main() {
   
   std::cout<< "Print generation2 :" <<std::endl;
   g2.PrintTree();
-
+  */
 
 
 

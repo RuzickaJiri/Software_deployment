@@ -16,10 +16,12 @@ class Tree{
     ~Tree();
     //Methods
 
-    Tree  Mutation();
+    Tree*  Mutation();
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
+    Node* SearchInTree(Node* x, int position) const;
+    int FindSize(Node* x) const;
 
     
 
@@ -28,18 +30,19 @@ class Tree{
 
     
     float fitness();
-	Node* head();
-    std::vector<Node*> Nodes();
+	  Node* head();
+    //std::vector<Node*> Nodes();
 
   std::vector<std::string> Formula(Node* x);
   int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
-  float CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
+  float CalcFitness(Node* n, bool x[][1], std::vector<std::string> xlabels, int y[]);
     
   protected : 
     
-    std::vector<Node*> Nodes_;
+    //std::vector<Node*> Nodes_;
     float fitness_;
     Node* head_;
+    int size_ ;
 };
 
 

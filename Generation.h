@@ -10,7 +10,7 @@ class Generation{
     Generation();
     ~Generation();
 
-    Tree GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const;
+    Tree GetBestIndividual(Node* n, bool x[][1], std::vector<std::string> xlabels, int y[]) const;
     Tree GetBestFormula() const;
 
     

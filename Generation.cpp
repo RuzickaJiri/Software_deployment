@@ -37,7 +37,7 @@ Generation::~Generation(){
   delete[] Trees_ ;
 }
 
-Tree Generation::GetBestIndividual(Node* n, bool x[], std::vector<std::string> xlabels, int y) const{
+Tree Generation::GetBestIndividual(Node* n, bool x[][1], std::vector<std::string> xlabels, int y[]) const{
     float fit = Trees_[0].CalcFitness( n, x,xlabels,  y);
     Tree best_tree = Trees_[0]; 
     /*for(const Tree obj : Trees_){
@@ -72,7 +72,7 @@ Generation Generation::Evolve(int n,int x,int y,int record){
 	std::string bestOfEachEvolution;
 	for(int i = 0; i<n; ++i){
 	  for (int j=0; j < nbr_trees_;++j){
-	    g->AppendTree(Trees_[j].Mutation());
+	   // g->AppendTree(Trees_[j].Mutation());
 	  }
 	  if (record){
 	    g->GetBestFormula();
