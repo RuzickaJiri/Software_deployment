@@ -58,7 +58,7 @@ void Generation::set_nbr_trees(size_t a){
 Tree Generation::GetBestIndividual( bool x[], std::vector<std::string> xlabels, int y) const{
     float fit = Trees_[0].CalcFitness( Trees_[0].head(), x,xlabels,  y);
     Tree best_tree = Trees_[0]; 
-    for(unsigned int i(0); i<size_; ++i){
+    for(size_t i=0; i<size_; ++i){
       if(Trees_[i].CalcFitness( Trees_[i].head(),  x,  xlabels,  y)<=fit){
         fit = Trees_[i].CalcFitness( Trees_[i].head(), x,  xlabels,  y);
         best_tree = Trees_[i];
