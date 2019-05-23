@@ -9,7 +9,7 @@ int main() {
 
   std::cout<<"Hello, World"<<std::endl;
   
- std::vector<std::string> xlabels={"x1","x2","x5","x13","x6","x13","x12","x14"};
+ std::vector<std::string> xlabels={"x1","x2","x5","x13"};
   Generation g(30, true, xlabels);
  
   std::cout<< "Print generation :" <<std::endl; 

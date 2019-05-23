@@ -185,7 +185,7 @@ void Tree::CopyTree(Node* x, Node* new_x){
       CopyTree(x->next(), new_x->next());
       if (x->oper()->binary()) {
         if (x->second_next()->WhatAmI() == "Leaf"){
-          Leaf* temp = new Leaf(x->second_next()->value());
+          Leaf* temp = new Leaf(x->second_next()->value(),xlabels_);
           new_x->set_second_next(temp);
           temp->set_previous(new_x);
         } else {

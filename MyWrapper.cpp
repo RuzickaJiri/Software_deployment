@@ -45,7 +45,7 @@ static PyObject*  PrintA(PyObject* self, PyObject* args){
 
 static PyObject*  PrintGeneration(PyObject* self, PyObject* args){
     Generation*  my_Generation = GenerationPythonToC(args);
-    my_Generation->PrintTree(0);
+    my_Generation->PrintTree();
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -74,10 +74,11 @@ static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
 //Create the Python Object Generation
 static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 	int nbr_trees;
+	bool add=true;
 	if (!PyArg_ParseTuple(args, "h", &nbr_trees)){
 		return NULL;
 	}
-	Generation* my_Generation = new Generation(nbr_trees);
+	Generation* my_Generation = new Generation(nbr_trees,add);
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION, GenerationCapsuleDestructor);
 	return capsule;
 
@@ -94,6 +95,15 @@ static PyObject* CreateGenerationOneTree(PyObject* self){
 	return capsule;
 
 return NULL;
+
+}
+static PyObject* Evolve(PyObject* self, PyObject* args){
+  int n;
+  bool* x;
+  int y;
+  int record;
+  std::vector<std::string> xlabels;
+  std::string* bestIndividual_
 
 }
 

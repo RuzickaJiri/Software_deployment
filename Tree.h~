@@ -12,7 +12,7 @@ class Tree{
     //Constructors
     Tree(    std::vector<std::string> xlabels_);
     Tree(const Tree& tr);
-    Tree();
+    Tree();)
     //Destructor
     ~Tree();
     //Methods

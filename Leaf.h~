@@ -27,7 +27,7 @@ public:
     
   //Constructors
   Leaf(std::vector<std::string> xlabels);
-  Leaf(std::string s);
+  Leaf(std::string s,std::vector<std::string> xlabels);
 
   //Destructor
   ~Leaf();
