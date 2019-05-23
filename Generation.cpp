@@ -37,9 +37,7 @@ Generation::Generation(){
 void Generation::PrintTree(){
   for(size_t a=0 ; a< nbr_trees_;a++){
       std::cout<<"Tree : "<<a+1<<std::endl;
-      std::cout<<"Entré jusqu'ici"<<std::endl;
       Trees_[a].PrintTree();
-      Trees_[a];
   }
 }
 
