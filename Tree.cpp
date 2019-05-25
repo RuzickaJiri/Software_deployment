@@ -236,21 +236,21 @@ Node* Tree::SearchInTree(Node* x, int position) const{
   
   if (position == 0) {
     return x ;
-  } //else {
-    if (x->WhatAmI() == "Operator"){
-      if (x->oper()->binary()) {
-        if (position > FindSize(x->next())){
-          return SearchInTree(x->second_next(), position - FindSize(x->next()) -1);
-        }
-        else {
-          return SearchInTree(x->next(), position - 1);
-        }
-        
-      } else {
+  }
+  if (x->WhatAmI() == "Operator"){
+    if (x->oper()->binary()) {
+      if (position > FindSize(x->next())){
+        return SearchInTree(x->second_next(), position - FindSize(x->next()) -1);
+      }
+      else {
         return SearchInTree(x->next(), position - 1);
       }
+      
+    } else {
+      return SearchInTree(x->next(), position - 1);
     }
-  //}
+  }
+  return nullptr;
 }
 
 
@@ -277,6 +277,7 @@ int Tree::CalcFormula(Node* n, bool x[]){
       }
     }
   }
+  return 0;
 }
 
 float Tree::CalcFitness(Node* n, bool x[], int y){
