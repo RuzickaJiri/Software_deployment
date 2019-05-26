@@ -35,7 +35,9 @@ class Tree{
 
     std::string Formula(Node* x);
     int CalcFormula(Node* n, bool x[]);
-    float CalcFitness(Node* n, bool x[], int y);
+    float CalcFitness(bool x[][10], int y[], int x_size);
+  
+    void set_fitness(bool x[][10], int y[], int x_size);
  
     
   protected : 

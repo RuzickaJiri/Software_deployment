@@ -6,6 +6,7 @@
 #include<iostream>
 #include<vector>
 #include"Operator.h"
+#include <cmath>
 
 Tree::Tree(std::vector<std::string> xlabels){
    fitness_ = 0;
@@ -166,6 +167,7 @@ void Tree::replace(Node* new_node, int position) {
 void Tree::PrintTree(){
   
   std::cout<< Formula(head_) <<std::endl;
+  std::cout<< "fitness :" << fitness_ <<std::endl;
 }
 
 void Tree::CopyTree(Node* x, Node* new_x){
@@ -280,9 +282,18 @@ int Tree::CalcFormula(Node* n, bool x[]){
   return 0;
 }
 
-float Tree::CalcFitness(Node* n, bool x[], int y){
-  return CalcFormula(n,x) - y;
+float Tree::CalcFitness(bool x[][10], int y[], int x_size){
+  float fit = 0;
+  for (int i=0; i< x_size; i++) {
+    fit += abs(CalcFormula(head_ ,x[i]) - y[i]);
+  }
+  return fit;
 }
 
-
+float Tree::fitness(){
+  return fitness_;
+}
   
+void Tree::set_fitness(bool x[][10], int y[], int x_size){
+  fitness_ = CalcFitness(x,y,x_size);
+}
