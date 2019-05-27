@@ -7,7 +7,7 @@
 class Generation{
   public : 
     Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels);
-    Generation(std::vector<std::string> xlabels,bool x[][10], int y[], int x_size);
+    Generation(std::vector<std::string> xlabels, int x_size, bool x[][10], int y[]);
     ~Generation();
 
     Tree GetBestIndividual( bool x[][10], int y[], int x_size) const;
@@ -22,7 +22,8 @@ class Generation{
     void PrintTree();
     void AppendTree(Tree t);
     void set_nbr_trees(size_t a);
-
+    size_t size();
+    float * fit();
 
 
   protected : 
@@ -30,6 +31,6 @@ class Generation{
     size_t nbr_trees_;
     size_t size_;
     std::vector<std::string> xlabels_;
-
+    float* fit_;
 };
 #endif

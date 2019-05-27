@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <iostream>
 #include "def_PyC.h"
-
+#include"Tree.h"
 #include "Generation.h"
 
 // Name for the cpp object "capsules"
@@ -51,25 +51,7 @@ static PyObject*  PrintGeneration(PyObject* self, PyObject* args){
 }
 
 
-/*
 
-static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
-    PyListObject* listOfAs;
-    int a = 0;
-    if (!PyArg_ParseTuple(args, "O", &listOfAs)){
-        return NULL;
-    }
-    int size = PyList_Size((PyObject*) listOfAs);
-    for (int i = 0; i < size; i++){
-        PyObject* capsule = (PyObject*) PyList_GetItem( (PyObject*) listOfAs, (Py_ssize_t) i);
-        A* my_A = (A*) PyCapsule_GetPointer(capsule,NAME_CAPSULE_A);
-        a += my_A->a;
-    }
-    A* my_A = new A(a);
-  	PyObject* capsule = PyCapsule_New(my_A, NAME_CAPSULE_A, ACapsuleDestructor);
-  	return Py_BuildValue("Oi",capsule,a);
-}
-*/
 
 static  std::vector<std::string> PythonStringtoC(PyListObject* pythonList){
 	
@@ -114,10 +96,14 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 			printf("We have a problem my friend\n");
 		return NULL;
 	}
-   std::vector<std::string> xlabels =	PythonStringtoC(listOfString);
+	int size = PyList_Size((PyObject*) listOfString);
+	// iterate over the python list
+	std::cout<<"size : "<<size<<std::endl;
+	
+	PythonStringtoC(listOfString);
 	std::cout<<nbr_trees<<std::endl;
 	//Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels)
-	//std::vector<std::string> xlabels={"x1","x2"};
+	std::vector<std::string> xlabels={"x1","x2"};
 	Generation* my_Generation = new Generation((size_t)nbr_trees,true,xlabels);
 	printf("dsgsdfgdsfh\n");
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
@@ -126,6 +112,52 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 return NULL;
 
 }
+
+
+
+/*
+
+static PyObject* SumAsInPyList(PyObject* self, PyObject* args){
+    PyListObject* listOfAs;
+    int a = 0;
+    if (!PyArg_ParseTuple(args, "O", &listOfAs)){
+        return NULL;
+    }
+    int size = PyList_Size((PyObject*) listOfAs);
+    for (int i = 0; i < size; i++){
+        PyObject* capsule = (PyObject*) PyList_GetItem( (PyObject*) listOfAs, (Py_ssize_t) i);
+        A* my_A = (A*) PyCapsule_GetPointer(capsule,NAME_CAPSULE_A);
+        a += my_A->a;
+    }
+    A* my_A = new A(a);
+  	PyObject* capsule = PyCapsule_New(my_A, NAME_CAPSULE_A, ACapsuleDestructor);
+  	return Py_BuildValue("Oi",capsule,a);
+}
+*/
+
+static PyObject* ComputeFitness(PyObject* self, PyObject* args){
+	
+	Generation*  my_Generation = GenerationPythonToC(args);
+	PyListObject* listOfFits =(PyListObject*) PyList_New((Py_ssize_t) my_Generation->size());
+	float* fitness=my_Generation->fit();
+	
+	for(size_t i=0;i<my_Generation->size();++i){ 
+	  
+	  float listItem = PyLong_AsLong(PyList_GetItem( (PyObject*) listOfFits , (Py_ssize_t) i));
+	  listItem=fitness[i];
+	 
+	  PyList_SetItem((PyObject *) listOfFits, (Py_ssize_t) i, Py_BuildValue("f", listItem));
+	  //std::cout<<listItem<<std::endl;
+	}
+	
+	 std::cout<<"OK"<<std::endl;
+  return (PyObject*) listOfFits;
+
+}
+	
+	
+
+  
 
 
 
@@ -139,6 +171,7 @@ return NULL;
 static PyMethodDef module_funcs[] = {
     {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tnumber of equations in your generation (size_t): the parameter\n\nReturns:\n\t capsule: Object Generation capsule"},		
     {"printTree", (PyCFunction)PrintGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
+    {"compute_fitness",(PyCFunction) ComputeFitness, METH_VARARGS, "Computes the fitness of every function in a given generation\n\nArgs : None\n\nReturns : an list of integers representing the fitness of every member of the generation."},
 		{NULL, NULL, METH_NOARGS, NULL}
 };
 
