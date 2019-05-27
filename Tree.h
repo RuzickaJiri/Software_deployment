@@ -10,14 +10,14 @@ class Tree{
   public : 
 
     //Constructors
-    Tree(    std::vector<std::string> xlabels_);
+    Tree(std::vector<std::string> xlabels_);
     Tree(const Tree& tr);
     Tree();
     //Destructor
     ~Tree();
     //Methods
 
-    Tree  Mutation();
+    Tree  Mutation(bool x[][10], int y[], int x_size);
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
