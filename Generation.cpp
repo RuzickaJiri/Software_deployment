@@ -97,17 +97,19 @@ Generation Generation::Evolve(int n, bool x[][10],int y[], int x_size, int recor
 	if (!record){
 		bestIndividual_[0]="Record is false";	
 	}
+	Tree best = GetBestIndividual(x,y,x_size);
 	for(int i = 0; i<n; ++i){
           g->set_nbr_trees(0);
 	  for (size_t j=0; j < nbr_trees_;++j){
 
-	    g->AppendTree(Trees_[j].Mutation(x,y, x_size));
+	    g->AppendTree(best.Mutation(x,y, x_size));
 
       g->Trees_[j].set_fitness(x,y, x_size);
 	  }
 	  if (record){	    
 	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size) + " with fitness " + std::to_string(g->GetBestIndividual(x,y, x_size).fitness());
           }
+      best = g->GetBestIndividual(x,y,x_size);
 	}
 
   return* g;

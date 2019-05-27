@@ -34,19 +34,19 @@ int main() {
   }
 
   //Test 2
-  std::vector<std::string> xlabels2={"x1","x2","x3"};
+  std::vector<std::string> xlabels2={"x1","x2","x3","x4","x5","x6","x7","x8"};
   bool x2[][10]={{1,1,0,0,0,1,0,0},{1,1,0,0,0,1,0,1},{0,1,1,1,0,1,1,0}};
-  int y2[]={0,1,1,1,1,1,1,0};
+  int y2[]={0,1,1};
   
   Generation g4(3, true, xlabels2);
-  g4.set_fitness(x2,y2,8);
+  g4.set_fitness(x2,y2,3);
  
   std::cout<< "Print generation :" <<std::endl; 
   g4.PrintTree();
 
 
   std::string* bestIndividual_2=new std::string[100];
-  Generation g5=g4.Evolve(10,x2,y2,8,true,bestIndividual_2);
+  Generation g5=g4.Evolve(10,x2,y2,3,true,bestIndividual_2);
 
   std::cout<< "Print generation2 :" <<std::endl;
  
