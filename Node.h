@@ -28,7 +28,7 @@ public:
     Node(const Node& model) ; // copy constructor - deleted
     Node() ; // constructor of node
 
-    ~Node() = default ;	
+    virtual ~Node() = default ;	
     
 protected:
 

@@ -10,8 +10,9 @@ class Tree{
   public : 
 
     //Constructors
-    Tree();
+    Tree(    std::vector<std::string> xlabels_);
     Tree(const Tree& tr);
+    Tree();
     //Destructor
     ~Tree();
     //Methods
@@ -33,8 +34,10 @@ class Tree{
     //std::vector<Node*> Nodes();
 
     std::string Formula(Node* x);
-    int CalcFormula(Node* n, bool x[], std::vector<std::string> xlabels);
-    float CalcFitness(Node* n, bool x[], std::vector<std::string> xlabels, int y);
+    int CalcFormula(Node* n, bool x[]);
+    float CalcFitness(bool x[][10], int y[], int x_size);
+  
+    void set_fitness(bool x[][10], int y[], int x_size);
  
     
   protected : 
@@ -43,6 +46,7 @@ class Tree{
     float fitness_;
     Node* head_;
     int size_;
+    std::vector<std::string> xlabels_;
 };
 
 

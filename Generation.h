@@ -6,18 +6,19 @@
 
 class Generation{
   public : 
-    Generation(size_t nbr_trees_,bool);
-    Generation();
+    Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels);
+    Generation(std::vector<std::string> xlabels);
     ~Generation();
 
-    Tree GetBestIndividual( bool x[], std::vector<std::string> xlabels, int y) const;
-    std::string GetBestFormula(bool x[], std::vector<std::string> xlabels, int y) const;
+    Tree GetBestIndividual( bool x[][10], int y[], int x_size) const;
+    std::string GetBestFormula(bool x[][10], int y[], int x_size) const;
+    void set_fitness(bool x[][10],int y[], int x_size);
 
     
-    void PrintTree(int a);
+    
 
     //Generation Evolve(int n,int x,int y,int record) const;//std::vector<std::string> xlabels
-    Generation Evolve(int n, bool x[],int y,int record,std::vector<std::string> xlabels,std::string* bestIndividual_ );
+    Generation Evolve(int n, bool x[][10],int y[],int x_size, int record,std::string* bestIndividual_ );
     void PrintTree();
     void AppendTree(Tree t);
     void set_nbr_trees(size_t a);
@@ -28,6 +29,7 @@ class Generation{
     Tree * Trees_;
     size_t nbr_trees_;
     size_t size_;
+    std::vector<std::string> xlabels_;
 
 };
 #endif

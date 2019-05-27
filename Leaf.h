@@ -1,6 +1,13 @@
+
 #include "Node.h"
 #include "Operation.h"
-#include <string>
+#include "Tree.h"
+#include "Operator.h"
+#include <iostream>
+
+
+
+
 
 #ifndef LEAF_
 #define LEAF_
@@ -19,7 +26,7 @@ public:
   std::string print() const override;
     
   //Constructors
-  Leaf() ;
+  Leaf(std::vector<std::string> xlabels);
   Leaf(std::string s);
 
   //Destructor

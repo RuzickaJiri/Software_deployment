@@ -1,4 +1,7 @@
+
 #include "Leaf.h"
+#include "Tree.h"
+#include "Operator.h"
 #include <iostream>
 
 std::string Leaf::WhatAmI() const {
@@ -6,25 +9,22 @@ std::string Leaf::WhatAmI() const {
 }
 
 //Constructor
-Leaf::Leaf(){
+Leaf::Leaf(std::vector<std::string> xlabels){
   next_ = nullptr ; //initialization of the next node on the null pointer
   previous_ = nullptr ; //initialization of the previous node on the null pointer
-  int r = std::rand() %2;
-  switch(r) {
-    case 0 :
-      value_ = "x1"; //constant
-      break;
-    case 1 :
-      value_ = "x2"; //variable
-      break;
-  }
+  int length=xlabels.size();
+  int r = std::rand() % length;
+  value_=xlabels[r];
+
 }
 
 Leaf::Leaf(std::string s){
   next_ = nullptr ; //initialization of the next node on the null pointer
   previous_ = nullptr ; //initialization of the previous node on the null pointer
+  
   value_ = s;
 }
+
 
 //Destructor
 Leaf::~Leaf(){
