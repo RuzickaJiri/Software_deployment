@@ -107,11 +107,16 @@ Generation Generation::Evolve(int n, float x[][10],float y[], int x_size, int re
       g->Trees_[j].set_fitness(x,y, x_size);
 	  }
 	  if (record){	    
-	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size) + " with fitness " + std::to_string(g->GetBestIndividual(x,y, x_size).fitness());
-          }
+	    if (g->GetBestIndividual(x,y, x_size).fitness() < best.fitness() || i==0) {
+	       bestIndividual_[i]=g->GetBestFormula(x,y, x_size) + " with fitness " + std::to_string(g->GetBestIndividual(x,y, x_size).fitness());
+	    } else {
+	      bestIndividual_[i] = bestIndividual_[i-1] ;
+	    }
+	  }
+    if (g->GetBestIndividual(x,y, x_size).fitness() < best.fitness()) {
       best = g->GetBestIndividual(x,y,x_size);
-	}
+    }
+  }
 
   return* g;
-
 }

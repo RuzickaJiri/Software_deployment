@@ -49,7 +49,6 @@ Node* Tree::head(){
 
 Tree Tree::Mutation(bool x[][10], int y[], int x_size) {
 
-  printf("%d\n", size_) ;
   Tree newTree(*this);
   int position = std::rand()%size_ ;
   int r = std::rand() %4;

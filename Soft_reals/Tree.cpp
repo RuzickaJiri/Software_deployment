@@ -197,6 +197,9 @@ std::string Tree::Formula(Node* x){
         return "("+ Formula(x->next()) +" "+ x->oper()->operation()
         +" "+ Formula(x->second_next()) + ")";
       }
+      else if (x->oper()->operation()=="^2" || x->oper()->operation()=="^3") {
+        return "( "+ Formula(x->next())+")" + x->oper()->operation() ;
+      }
       else {
         return "("+ x->oper()->operation()+" "+ Formula(x->next())+")";
       }
@@ -266,6 +269,27 @@ float Tree::CalcFormula(Node* n, float x[]){
       }
       if(n->oper()->operation() == "/") {
         return CalcFormula(n->next(),x) / CalcFormula(n->second_next(),x);
+      }
+      if(n->oper()->operation() == "^2") {
+        return pow(CalcFormula(n->next(),x),2) ;
+      }
+      if(n->oper()->operation() == "exp") {
+        return exp(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "sin") {
+        return sin(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "cos") {
+        return cos(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "^3") {
+        return pow(CalcFormula(n->next(),x),3) ;
+      }
+      if(n->oper()->operation() == "ln") {
+        return log(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "--") {
+        return (CalcFormula(n->next(),x))*(-1) ;
       }
     }
   }

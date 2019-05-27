@@ -116,7 +116,6 @@ Generation Generation::Evolve(int n, bool x[][10],int y[], int x_size, int recor
 	  for (size_t j=0; j < nbr_trees_;++j){
 
 	    g->AppendTree(best.Mutation(x,y, x_size));
-
       g->Trees_[j].set_fitness(x,y, x_size);
       g->fit_[j]=Trees_[j].fitness();
 	  }
