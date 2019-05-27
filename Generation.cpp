@@ -56,7 +56,7 @@ void Generation::set_nbr_trees(size_t a){
 
 void Generation::set_fitness(bool x[][10],int y[], int x_size){
   for (size_t i=0; i < nbr_trees_;i++){
-    Trees_[i].set_fitness(x,y,3); // Set fitness_(should be inside constructor but here for now)
+    Trees_[i].set_fitness(x,y,x_size); // Set fitness_(should be inside constructor but here for now)
   }
 }
 
@@ -106,7 +106,7 @@ Generation Generation::Evolve(int n, bool x[][10],int y[], int x_size, int recor
       g->Trees_[j].set_fitness(x,y, x_size);
 	  }
 	  if (record){	    
-	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size);
+	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size) + " with fitness " + std::to_string(g->GetBestIndividual(x,y, x_size).fitness());
           }
 	}
 
