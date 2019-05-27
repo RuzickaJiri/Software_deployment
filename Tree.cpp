@@ -54,7 +54,7 @@ std::vector<Node*> Tree::Nodes(){
   return Nodes_;
 }*/
 
-Tree Tree::Mutation() {
+Tree Tree::Mutation(bool x[][10], int y[], int x_size) {
   Tree newTree(*this);
   //int position = std::rand()%Nodes_.size() ;
   int position = std::rand()%size_ ;
@@ -70,7 +70,7 @@ Tree Tree::Mutation() {
     newTree.replace(new_node, position) ;
   }
   
-
+  newTree.set_fitness(x, y,x_size);
   
   return newTree ;
 }

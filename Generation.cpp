@@ -18,7 +18,7 @@ Generation::Generation(size_t size, bool add,std::vector<std::string> xlabels){
 
 
 
-Generation::Generation(std::vector<std::string> xlabels){
+Generation::Generation(std::vector<std::string> xlabels,bool x[][10], int y[], int x_size){
  nbr_trees_=1;
  size_=1;
  Trees_= new Tree[nbr_trees_];
@@ -29,10 +29,10 @@ Generation::Generation(std::vector<std::string> xlabels){
  t1.append(&op1,0) ;
  t1.append(&op2,1) ;
  t1.append(&op3,2) ;
- t1.Mutation() ;
- t1.Mutation() ;
- t1.Mutation() ;
- t1.Mutation() ;
+ t1.Mutation(x,y,x_size) ;
+ t1.Mutation(x, y, x_size) ;
+ t1.Mutation(x, y, x_size) ;
+ t1.Mutation(x, y, x_size) ;
  Trees_[0]=t1;
 
 }
@@ -98,7 +98,7 @@ Generation Generation::Evolve(int n, bool x[][10],int y[], int x_size, int recor
 	for(int i = 0; i<n; ++i){
           g->set_nbr_trees(0);
 	  for (size_t j=0; j < nbr_trees_;++j){
-	    g->AppendTree(Trees_[j].Mutation());
+	    g->AppendTree(Trees_[j].Mutation(x,y, x_size));
       g->Trees_[j].set_fitness(x,y, x_size);
 	  }
 	  if (record){	    

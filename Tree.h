@@ -17,7 +17,7 @@ class Tree{
     ~Tree();
     //Methods
 
-    Tree  Mutation();
+    Tree  Mutation(bool x[][10], int y[], int x_size);
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
