@@ -7,7 +7,10 @@
 class Generation{
   public : 
     Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels);
-    Generation(std::vector<std::string> xlabels, int x_size, bool x[][10], int y[]);
+
+    Generation(std::vector<std::string> xlabels,bool x[][10], int y[], int x_size);
+
+
     ~Generation();
 
     Tree GetBestIndividual( bool x[][10], int y[], int x_size) const;

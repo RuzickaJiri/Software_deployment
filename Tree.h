@@ -10,7 +10,7 @@ class Tree{
   public : 
 
     //Constructors
-    Tree(    std::vector<std::string> xlabels_);
+    Tree(std::vector<std::string> xlabels_);
     Tree(const Tree& tr);
     Tree();
     //Destructor

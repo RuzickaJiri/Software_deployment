@@ -41,9 +41,8 @@ Tree::Tree(const Tree& tr){
 }
 
 Tree::~Tree(){
-  //for(const auto& obj : Nodes_){
-    //delete obj;
-  //} 
+  //delete head_ ; 
+
 }
 
 Node* Tree::head(){
@@ -54,7 +53,10 @@ std::vector<Node*> Tree::Nodes(){
   return Nodes_;
 }*/
 
+
+
 Tree Tree::Mutation(bool x[][10], int y[], int x_size) {
+
   Tree newTree(*this);
   //int position = std::rand()%Nodes_.size() ;
   int position = std::rand()%size_ ;

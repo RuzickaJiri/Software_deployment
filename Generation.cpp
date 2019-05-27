@@ -21,7 +21,11 @@ Generation::Generation(size_t size, bool add,std::vector<std::string> xlabels){
 
 
 
-Generation::Generation(std::vector<std::string> xlabels, int x_size, bool x[][10], int y[] ){
+
+
+Generation::Generation(std::vector<std::string> xlabels,bool x[][10], int y[], int x_size){
+
+
  nbr_trees_=1;
  size_=1;
  Trees_= new Tree[nbr_trees_];
@@ -57,7 +61,7 @@ void Generation::set_nbr_trees(size_t a){
 
 void Generation::set_fitness(bool x[][10],int y[], int x_size){
   for (size_t i=0; i < nbr_trees_;i++){
-    Trees_[i].set_fitness(x,y,3); // Set fitness_(should be inside constructor but here for now)
+    Trees_[i].set_fitness(x,y,x_size); // Set fitness_(should be inside constructor but here for now)
   }
 }
 
@@ -106,17 +110,21 @@ Generation Generation::Evolve(int n, bool x[][10],int y[], int x_size, int recor
 	if (!record){
 		bestIndividual_[0]="Record is false";	
 	}
+	Tree best = GetBestIndividual(x,y,x_size);
 	for(int i = 0; i<n; ++i){
           g->set_nbr_trees(0);
 	  for (size_t j=0; j < nbr_trees_;++j){
-	    g->AppendTree(Trees_[j].Mutation(x,y, x_size));
+
+	    g->AppendTree(best.Mutation(x,y, x_size));
+
       g->Trees_[j].set_fitness(x,y, x_size);
       g->fit_[j]=Trees_[j].fitness();
 	  }
 	    
 	  if (record){	    
-	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size);
+	    bestIndividual_[i]=g->GetBestFormula(x,y, x_size) + " with fitness " + std::to_string(g->GetBestIndividual(x,y, x_size).fitness());
           }
+      best = g->GetBestIndividual(x,y,x_size);
 	}
 
   return* g;

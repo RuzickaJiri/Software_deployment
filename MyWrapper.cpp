@@ -101,10 +101,14 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 	std::cout<<"size : "<<size<<std::endl;
 	
 	PythonStringtoC(listOfString);
+
+
+   
 	std::cout<<nbr_trees<<std::endl;
 	//Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels)
 	std::vector<std::string> xlabels={"x1","x2"};
 	Generation* my_Generation = new Generation((size_t)nbr_trees,true,xlabels);
+
 	printf("dsgsdfgdsfh\n");
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
 	return capsule;
@@ -112,6 +116,7 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 return NULL;
 
 }
+
 
 
 
