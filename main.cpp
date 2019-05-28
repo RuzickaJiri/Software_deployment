@@ -6,7 +6,7 @@
 #include"Tree.h"
 #include"Generation.h"
 int main() {
-
+/*
   std::cout<<"Hello, World"<<std::endl;
   
 
@@ -52,18 +52,25 @@ int main() {
  
   g5.PrintTree();
   for (size_t i=0; i<10;i++){
-    std::cout<<i<<" "<<bestIndividual_2[i]<<std::endl;
-  }
+    std::cout<<i<<" "<<bestIndividual_2[i]<<std::endl;}
+    */
+    
+
+/*
+  std::vector<std::string> xlabels={"x1","x2","x3","x4","x5"};
+  bool x[][10]={{1,1,0,0,0},{1,0,1,0,1},{0,1,1,0,0}};
+  int y[]={1,1,0};
+  
+  Generation* g = new Generation(5, true, xlabels);
 
 
+Tree t1=g->GetBestIndividual(x,y,3);
+t1.Mutation(x,y,3);
 
+t1.Mutation(x,y,3);
+t1.Mutation(x,y,3);
 
-
-
-
-
-
-
+*/
 
 
 
@@ -75,4 +82,3 @@ int main() {
   
   return 0 ;
 }
-

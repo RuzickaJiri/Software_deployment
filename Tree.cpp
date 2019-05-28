@@ -55,7 +55,7 @@ std::vector<Node*> Tree::Nodes(){
 
 
 
-Tree Tree::Mutation(bool x[][10], int y[], int x_size) {
+Tree Tree::Mutation(bool **x, int y[], int x_size) {
 
   Tree newTree(*this);
   //int position = std::rand()%Nodes_.size() ;
@@ -284,7 +284,7 @@ int Tree::CalcFormula(Node* n, bool x[]){
   return 0;
 }
 
-float Tree::CalcFitness(bool x[][10], int y[], int x_size){
+float Tree::CalcFitness(bool **x, int y[], int x_size){
   float fit = 0;
   for (int i=0; i< x_size; i++) {
     fit += abs(CalcFormula(head_ ,x[i]) - y[i]);
@@ -296,6 +296,6 @@ float Tree::fitness(){
   return fitness_;
 }
   
-void Tree::set_fitness(bool x[][10], int y[], int x_size){
+void Tree::set_fitness(bool **x, int y[], int x_size){
   fitness_ = CalcFitness(x,y,x_size);
 }
