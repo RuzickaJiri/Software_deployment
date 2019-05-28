@@ -14,8 +14,6 @@ Tree::Tree(std::vector<std::string> xlabels){
    xlabels_=xlabels;
    head_ = new Leaf(xlabels_);
    
-   
-
 }
 
 Tree::Tree(){
@@ -47,7 +45,7 @@ Node* Tree::head(){
 }
 
 
-Tree Tree::Mutation(bool **x, int y[], int x_size) {
+Tree Tree::Mutation(float x[][10], float y[], int x_size) {
 
   Tree newTree(*this);
   int position = std::rand()%size_ ;
@@ -105,7 +103,6 @@ void Tree::replace(Node* new_node, int position) {
   
   Node* node_to_replace = SearchInTree(head_, position) ;
   //size_ -= FindSize(node_to_replace) ;
-    
   if (node_to_replace->previous() != nullptr) {
     new_node->set_previous(node_to_replace->previous()) ;
     if (node_to_replace == node_to_replace->previous()->next()) {
@@ -200,6 +197,9 @@ std::string Tree::Formula(Node* x){
         return "("+ Formula(x->next()) +" "+ x->oper()->operation()
         +" "+ Formula(x->second_next()) + ")";
       }
+      else if (x->oper()->operation()=="^2" || x->oper()->operation()=="^3") {
+        return "( "+ Formula(x->next())+")" + x->oper()->operation() ;
+      }
       else {
         return "("+ x->oper()->operation()+" "+ Formula(x->next())+")";
       }
@@ -216,6 +216,7 @@ int Tree::FindSize(Node* x) const{
       return FindSize(x->next()) + 1 + FindSize(x->second_next());
     } else {
       return FindSize(x->next()) + 1 ;
+      
     }
   }
 }
@@ -242,7 +243,8 @@ Node* Tree::SearchInTree(Node* x, int position) const{
 }
 
 
-int Tree::CalcFormula(Node* n, bool x[]){
+
+float Tree::CalcFormula(Node* n, float x[]){
   
   int size = xlabels_.size();
   if (n != nullptr){
@@ -250,28 +252,54 @@ int Tree::CalcFormula(Node* n, bool x[]){
       for (int i=0; i<size; i++) {
         if (n->value() == xlabels_[i]){
           return x[i];
+        } else {
+          return 1;
         }
       }
 
     } else {
-      if(n->oper()->operation() == "AND") {
-        return CalcFormula(n->next(),x) && CalcFormula(n->second_next(),x);
+      if(n->oper()->operation() == "+") {
+        return CalcFormula(n->next(),x) + CalcFormula(n->second_next(),x);
       }
-      if(n->oper()->operation() == "OR") {
-        return CalcFormula(n->next(),x) || CalcFormula(n->second_next(),x);
+      if(n->oper()->operation() == "-") {
+        return CalcFormula(n->next(),x) - CalcFormula(n->second_next(),x);
       }
-      if(n->oper()->operation() == "NOT") {
-        return !CalcFormula(n->next(),x);
+      if(n->oper()->operation() == "*") {
+        return CalcFormula(n->next(),x) * CalcFormula(n->second_next(),x);
+      }
+      if(n->oper()->operation() == "/") {
+        return CalcFormula(n->next(),x) / CalcFormula(n->second_next(),x);
+      }
+      if(n->oper()->operation() == "^2") {
+        return pow(CalcFormula(n->next(),x),2) ;
+      }
+      if(n->oper()->operation() == "exp") {
+        return exp(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "sin") {
+        return sin(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "cos") {
+        return cos(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "^3") {
+        return pow(CalcFormula(n->next(),x),3) ;
+      }
+      if(n->oper()->operation() == "ln") {
+        return log(CalcFormula(n->next(),x)) ;
+      }
+      if(n->oper()->operation() == "--") {
+        return (CalcFormula(n->next(),x))*(-1) ;
       }
     }
   }
   return 0;
 }
 
-float Tree::CalcFitness(bool **x, int y[], int x_size){
+float Tree::CalcFitness(float x[][10], float y[], int x_size){
   float fit = 0;
   for (int i=0; i< x_size; i++) {
-    fit += abs(CalcFormula(head_ ,x[i]) - y[i]);
+    fit += pow(CalcFormula(head_ ,x[i]) - y[i],2);
   }
   return fit;
 }
@@ -280,6 +308,6 @@ float Tree::fitness(){
   return fitness_;
 }
   
-void Tree::set_fitness(bool **x, int y[], int x_size){
+void Tree::set_fitness(float x[][10], float y[], int x_size){
   fitness_ = CalcFitness(x,y,x_size);
 }

@@ -10,20 +10,27 @@ std::string Leaf::WhatAmI() const {
 
 //Constructor
 Leaf::Leaf(std::vector<std::string> xlabels){
-
-  int length=xlabels.size();
-  int r = std::rand() % length;
-  value_=xlabels[r];
+  int rand = std::rand() %2;
+  if (rand == 0){
+    int length=xlabels.size();
+    int r = std::rand() % length;
+    value_=xlabels[r];
+  }
+  else {
+    value_="1";
+  }
 
 }
 
 Leaf::Leaf(std::string s){
+  
   value_ = s;
 }
 
 
 //Destructor
-
+Leaf::~Leaf(){
+}
 
 //Getters
 std::string Leaf::value() const {

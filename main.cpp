@@ -19,7 +19,7 @@ int main() {
   g->set_fitness(x,y,3);
  
   std::cout<< "Print generation :" <<std::endl; 
-  g->PrintTree();
+  //g->PrintTree();
 
   std::string* bestIndividual_=new std::string[100];
   Generation g2=g->Evolve(10,x,y,3,true,bestIndividual_);
@@ -28,7 +28,7 @@ int main() {
 
   std::cout<< "Print generation2 :" <<std::endl;
  
-  g2.PrintTree();
+  //g2.PrintTree();
   for (size_t i=0; i<10;i++){
     std::cout<<i<<" "<<bestIndividual_[i]<<std::endl;
   }
@@ -41,8 +41,8 @@ int main() {
   Generation g4(3, true, xlabels2);
   g4.set_fitness(x2,y2,3);
  
-  std::cout<< "Print generation :" <<std::endl; 
-  g4.PrintTree();
+  std::cout<< "Print generation3 :" <<std::endl; 
+  //g4.PrintTree();
 
 
   std::string* bestIndividual_2=new std::string[100];
@@ -64,11 +64,15 @@ int main() {
   Generation* g = new Generation(5, true, xlabels);
 
 
-Tree t1=g->GetBestIndividual(x,y,3);
-t1.Mutation(x,y,3);
+  std::string* bestIndividual_3=new std::string[100];
+  Generation g7=g6.Evolve(20,x3,y3,7,true,bestIndividual_3);
 
-t1.Mutation(x,y,3);
-t1.Mutation(x,y,3);
+  std::cout<< "Print generation6 :" <<std::endl;
+ 
+  //g7.PrintTree();
+  for (size_t i=0; i<20;i++){
+    std::cout<<i<<" "<<bestIndividual_3[i]<<std::endl;
+  }
 
 */
 
