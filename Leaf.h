@@ -30,7 +30,7 @@ public:
   Leaf(std::string s);
 
   //Destructor
-  ~Leaf();
+  ~Leaf()=default;
     
 protected:
   
