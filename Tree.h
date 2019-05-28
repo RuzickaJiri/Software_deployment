@@ -17,7 +17,7 @@ class Tree{
     ~Tree();
     //Methods
 
-    Tree  Mutation(bool x[][10], int y[], int x_size);
+    Tree  Mutation(bool **x, int y[], int x_size);
     void Delete(Node* new_node);
     void replace(Node* new_node,int position);
     void append(Node* new_node, int position);
@@ -35,9 +35,9 @@ class Tree{
 
     std::string Formula(Node* x);
     int CalcFormula(Node* n, bool x[]);
-    float CalcFitness(bool x[][10], int y[], int x_size);
+    float CalcFitness(bool **x, int y[], int x_size);
   
-    void set_fitness(bool x[][10], int y[], int x_size);
+    void set_fitness(bool** x, int y[], int x_size);
  
     
   protected : 

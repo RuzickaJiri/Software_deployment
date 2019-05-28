@@ -23,8 +23,7 @@ Leaf::Leaf(std::string s){
 
 
 //Destructor
-Leaf::~Leaf(){
-}
+
 
 //Getters
 std::string Leaf::value() const {

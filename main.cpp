@@ -6,7 +6,7 @@
 #include"Tree.h"
 #include"Generation.h"
 int main() {
-
+/*
   std::cout<<"Hello, World"<<std::endl;
   
 
@@ -48,23 +48,20 @@ int main() {
   std::string* bestIndividual_2=new std::string[100];
   Generation g5=g4.Evolve(10,x2,y2,3,true,bestIndividual_2);
 
-  std::cout<< "Print generation4 :" <<std::endl;
+  std::cout<< "Print generation2 :" <<std::endl;
  
-  //g5.PrintTree();
+  g5.PrintTree();
   for (size_t i=0; i<10;i++){
-    std::cout<<i<<" "<<bestIndividual_2[i]<<std::endl;
-  }
+    std::cout<<i<<" "<<bestIndividual_2[i]<<std::endl;}
+    */
+    
 
-  //Test 3
-  std::vector<std::string> xlabels3={"x1","x2","x3"};
-  bool x3[][10]={{1,1,0},{1,0,1},{0,1,0},{1,1,1},{1,0,1},{1,1,0},{0,1,0}};
-  int y3[]={0,1,1,0,0,0,0};
+/*
+  std::vector<std::string> xlabels={"x1","x2","x3","x4","x5"};
+  bool x[][10]={{1,1,0,0,0},{1,0,1,0,1},{0,1,1,0,0}};
+  int y[]={1,1,0};
   
-  Generation g6(7, true, xlabels3);
-  g6.set_fitness(x3,y3,7);
- 
-  std::cout<< "Print generation5 :" <<std::endl; 
-  //g6.PrintTree();
+  Generation* g = new Generation(5, true, xlabels);
 
 
   std::string* bestIndividual_3=new std::string[100];
@@ -77,13 +74,7 @@ int main() {
     std::cout<<i<<" "<<bestIndividual_3[i]<<std::endl;
   }
 
-
-
-
-
-
-
-
+*/
 
 
 
@@ -95,4 +86,3 @@ int main() {
   
   return 0 ;
 }
-
