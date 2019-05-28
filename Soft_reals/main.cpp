@@ -36,23 +36,23 @@ int main() {
 
   //Test 2
   std::vector<std::string> xlabels2={"x"};
-  float x2[][10]={{1},{3},{10},{20},{30},{40},{50},{60},{70},{80}};
-  float y2[]={1,4,9,18,20,15,9,4,30};
+  float x2[][10]={{0.1},{1},{2},{3},{4},{5},{10}}; // f(x) = ln(x) + (x-1)^2
+  float y2[]={-1.5,0,1.7,5.09,10.39,17.61,83.30};
   
-  Generation g4(3, true, xlabels2);
-  g4.set_fitness(x2,y2,10);
+  Generation g4(1000, true, xlabels2);
+  g4.set_fitness(x2,y2,7);
  
   std::cout<< "Print generation :" <<std::endl; 
   g4.PrintTree();
 
 
   std::string* bestIndividual_2=new std::string[10000];
-  Generation g5=g4.Evolve(1000,x2,y2,10,true,bestIndividual_2);
+  Generation g5=g4.Evolve(20,x2,y2,7,true,bestIndividual_2);
 
   std::cout<< "Print generation2 :" <<std::endl;
  
   g5.PrintTree();
-  for (size_t i=0; i<1000;i++){
+  for (size_t i=0; i<20;i++){
     std::cout<<i<<" "<<bestIndividual_2[i]<<std::endl;
   }
 
