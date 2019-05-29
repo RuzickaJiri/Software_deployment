@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Generation.h"
 
-Generation::Generation(size_t size, bool add,std::vector<std::string> xlabels){
+Generation::Generation(size_t size, std::vector<std::string> xlabels){
   size_=size;
   nbr_trees_=0;
   Trees_= new Tree[size_];
@@ -18,30 +18,6 @@ Generation::Generation(size_t size, bool add,std::vector<std::string> xlabels){
 
 }
 
-
-
-
-
-Generation::Generation(std::vector<std::string> xlabels,bool** x, int y[], int x_size){
-
-
- nbr_trees_=1;
- size_=1;
- Trees_= new Tree[nbr_trees_];
- Operator op1 ;
- Operator op2 ;
- Operator op3 ;
- Tree t1 ;
- t1.append(&op1,0) ;
- t1.append(&op2,1) ;
- t1.append(&op3,2) ;
- t1.Mutation(x,y,x_size) ;
- t1.Mutation(x, y, x_size) ;
- t1.Mutation(x, y, x_size) ;
- t1.Mutation(x, y, x_size) ;
- Trees_[0]=t1;
-
-}
 
 void Generation::PrintTree(){
   for(size_t a=0 ; a< nbr_trees_;a++){
@@ -106,7 +82,7 @@ void Generation::AppendTree(Tree t){
 Generation* Generation::Evolve(int n,bool**x,int y[], int x_size, int record, std::string* bestIndividual_ ){
  /*bestIndividual_ must be in stack and of size n*/
 
-	Generation* g = new Generation(size_, false,xlabels_);
+	Generation* g = new Generation(size_,xlabels_);
 	if (!record){
 		bestIndividual_[0]="Record is false";	
 	}

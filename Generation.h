@@ -6,9 +6,7 @@
 
 class Generation{
   public : 
-    Generation(size_t nbr_trees_,bool,std::vector<std::string> xlabels);
-
-    Generation(std::vector<std::string> xlabels,bool **x, int y[], int x_size);
+    Generation(size_t size,std::vector<std::string> xlabels);
 
 
     ~Generation();

@@ -20,7 +20,7 @@ for (int j = 0; j < size1; j++){
 std::vector<std::string> xlabels={"x1","x2","x3","x4","x5","x6","x7"};
 int y[]={1,1,0,0,1,1,1};
   
-  Generation* g = new Generation(5, true, xlabels);
+  Generation* g = new Generation(5, xlabels);
   g->set_fitness(clist,y,7);
  
   std::cout<< "Print generation :" <<std::endl; 
@@ -28,10 +28,10 @@ int y[]={1,1,0,0,1,1,1};
 
   std::string* bestIndividual_=new std::string[100];
   Generation* g2=g->Evolve(10,clist,y,7,true,bestIndividual_);
-  //Generation* g3=g2->Evolve(10,clist,y,7,true,bestIndividual_);
   
-   //g3->PrintTree();
-   
+  std::cout<< "Print generation 2:" <<std::endl; 
+  g2->PrintTree();
+  
   for (size_t i=0; i<10;i++){
     std::cout<<i<<" "<<bestIndividual_[i]<<std::endl;
   }
