@@ -44,8 +44,6 @@ static PyObject*  PrintGeneration(PyObject* self, PyObject* args){
 }
 
 
-
-
 static  std::vector<std::string> PythonStringtoC(PyListObject* pythonList){
 	
   // get the size of the list
@@ -66,7 +64,8 @@ static  std::vector<std::string> PythonStringtoC(PyListObject* pythonList){
     Py_XDECREF(repr);
     Py_XDECREF(str);
 	}
-	return xlabels;		
+
+    return xlabels;		
 
 }
 
@@ -102,10 +101,12 @@ static  bool** PythonListtoC2D(PyListObject* pythonList){
 			int listItem = (int) PyLong_AsLong(item);
 			clist[j][i]=listItem;
 		}
+
 	}
 	return clist;		
 
 }
+
 
 
 
@@ -120,14 +121,11 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 	}
 	int size = PyList_Size((PyObject*) listOfString);
 	// iterate over the python list
-	std::cout<<"size : "<<size<<std::endl;
-	
-	PythonStringtoC(listOfString); 
  	std::cout<<nbr_trees<<std::endl;
-	std::vector<std::string> xlabels={"x1","x2"};
-	Generation* my_Generation = new Generation((size_t)nbr_trees,true,xlabels);
 
-	printf("dsgsdfgdsfh\n");
+	std::vector<std::string> xlabels=PythonStringtoC(listOfString); //{"x1","x2"};
+
+	Generation* my_Generation = new Generation((size_t)nbr_trees,true,xlabels);
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
 	return capsule;
 
@@ -159,12 +157,14 @@ static PyObject* ComputeFitness(PyObject* self, PyObject* args){
 }
 
 static PyObject* MaxFitness(PyObject* self, PyObject* args){
+
 	
 	Generation*  my_Generation = GenerationPythonToC(args);
 
 	float* fitness=my_Generation->fit();
 	float fittest=0;
 	
+
 	for(size_t i=0;i<my_Generation->size();++i){ 
 		if(fitness[i]>fittest)
 			fitness[i]=fittest;
@@ -190,25 +190,42 @@ static PyObject* Evolve(PyObject* self, PyObject* args){
 	  
   bool** boolxC= PythonListtoC2D(listOfBoolx);
   int* yC=PythonListtoC(listOfInty);
-  int x_size = PyList_Size((PyObject*) listOfBoolx);
+
+  int x_size = PyList_Size((PyObject*) listOfInty);
+  
   std::string* bestIndividual= new std::string[n] ;
-    
-    std::vector<std::string> xlabels={"x1","x2"};
   Generation* thisGeneration = (Generation*) PyCapsule_GetPointer(generationPy,NAME_CAPSULE_GENERATION);	
-
-
-
-  Generation* newone =new Generation(5,true,xlabels);
-  newone = thisGeneration->Evolve(n,boolxC,yC,x_size,record,bestIndividual);
-  std::cout<<"Test conformity"<<std::endl;
-  newone->PrintTree();
-
-  PyObject* capsule = PyCapsule_New(newone, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
-     
+  Generation* newGeneration = thisGeneration->Evolve(n,boolxC,yC,x_size,record,bestIndividual);
+  
+  PyObject* capsule = PyCapsule_New(newGeneration, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
   return capsule;
-    
+
 }
 	
+
+static PyObject* PrintBestTree(PyObject* self, PyObject* args){
+
+
+  PyListObject* listOfBoolx;
+  PyListObject* listOfInty;
+  PyObject* generationPy;
+  //int n, bool x[][10],int y[], int x_size, int record, std::string* bestIndividual_ 
+  if (!PyArg_ParseTuple(args, "OOO",&listOfBoolx, &listOfInty,&generationPy)){
+	  std::cout<<"if i see this a will be sad"<<std::endl;
+	   
+	  }
+	  
+  bool** boolxC= PythonListtoC2D(listOfBoolx);
+  int* yC=PythonListtoC(listOfInty);
+  int x_size = PyList_Size((PyObject*) listOfInty);
+  
+  //std::string* bestIndividual= new std::string[n] ;
+  Generation* thisGeneration = (Generation*) PyCapsule_GetPointer(generationPy,NAME_CAPSULE_GENERATION);	
+  thisGeneration->GetBestIndividual(boolxC,yC,x_size).PrintTree();
+  Py_INCREF(Py_None);
+  return Py_None;
+}
+
 
   
 
@@ -222,11 +239,14 @@ static PyObject* Evolve(PyObject* self, PyObject* args){
 // Module functions {<python function name>, <function in wrapper>, <parameters flag>, <doctring>}
 // https://docs.python.org/3/c-api/structures.html
 static PyMethodDef module_funcs[] = {
-    {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tnumber of equations in your generation (size_t): the parameter\n\nReturns:\n\t capsule: Object Generation capsule"},		
-    {"printTree", (PyCFunction)PrintGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
-    {"evolve",(PyCFunction) Evolve, METH_VARARGS, "Evolve:\n Args: boolean record,int size, 2D boolean table,result table, generation \n\nReturns : A new evolved Generation."},
+
+    {"create_generation", (PyCFunction)CreateGeneration, METH_VARARGS, "Create an instance of class Generation\n\nArgs:\n\tint : number of equations in your generation (size_t)\n List of strings : the names given to your formula  \n\nReturns:\n\t capsule: Object Generation capsule"},		
+    {"print_formulas", (PyCFunction)PrintGeneration, METH_VARARGS, "Prints all the formulas of a generation \n\nArgs:\n\tNon\n\nReturns:\n\t capsule: Object Generation capsule"},
+    {"evolve",(PyCFunction) Evolve, METH_VARARGS, "Evolve:\n Args: \n boolean weather you want the best formula of each iteration in the evolve methode to be saved (not possible to get the table of string yet ;) ),\n 2D boolean list with all your data,\n list of ints with the results of your datas \n the generation to which the evolve method will be applied\n\nReturns : A new evolved Generation."},
+{"print_best_formula",(PyCFunction) PrintBestTree, METH_VARARGS, "Evolve:\n Args:  \n 2D boolean list with all your data,\n list of ints with the results of your datas generation \n the generation to which the evolve method will be applied\n\nReturns : nothing"},
     {"compute_fitness",(PyCFunction) ComputeFitness, METH_VARARGS, "Computes the fitness of every function in a given generation\n\nArgs : None\n\nReturns : an list of integers representing the fitness of every member of the generation."},
-	 {"compute_best_fitness",(PyCFunction) MaxFitness, METH_VARARGS, "Computes the fitness of the best function in a given generation\n\nArgs : None\n\nReturns : an list of integers representing the fitness of every member of the generation."},
+	 {"compute_best_fitness",(PyCFunction) MaxFitness, METH_VARARGS, "Computes the fitness of the best function in a given generation\n\nArgs : None\n\nReturns : one integer representing the fitness of every member of the generation."},
+
 	
 		{NULL, NULL, METH_NOARGS, NULL}
 };
@@ -234,7 +254,7 @@ static PyMethodDef module_funcs[] = {
 static struct PyModuleDef moduledef = {
         PyModuleDef_HEAD_INIT,
         "my_wrapper_c",
-        "my_wrapper_c module is simple example of C++ extension for python",
+        "my_wrapper_c module is a projet for the devlog module of third year of BIM. \n It is possible to create formulas and test them to see if they are adapted for the data given.",
         sizeof(PyObject*),
 				module_funcs,
 				NULL,

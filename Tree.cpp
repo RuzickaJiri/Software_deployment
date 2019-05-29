@@ -244,6 +244,7 @@ Node* Tree::SearchInTree(Node* x, int position) const{
 
 int Tree::CalcFormula(Node* n, bool x[]){
   
+  
   int size = xlabels_.size();
   if (n != nullptr){
     if (n->WhatAmI() == "Leaf"){
