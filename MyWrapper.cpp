@@ -125,7 +125,7 @@ static PyObject* CreateGeneration(PyObject* self, PyObject* args){
 
 	std::vector<std::string> xlabels=PythonStringtoC(listOfString); //{"x1","x2"};
 
-	Generation* my_Generation = new Generation((size_t)nbr_trees,true,xlabels);
+	Generation* my_Generation = new Generation((size_t)nbr_trees,xlabels);
 	PyObject* capsule = PyCapsule_New(my_Generation, NAME_CAPSULE_GENERATION ,GenerationCapsuleDestructor);
 	return capsule;
 
